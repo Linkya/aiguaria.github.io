@@ -16427,8 +16427,8 @@ var CheckoutPage = (function () {
         this.order.date = new Date();
         this.openingTimes = navParams.data.openingTimes;
         this.loadPaymentMethods();
-        this.loadFees();
-        this.loadFixedFee();
+        // this.loadFees();
+        // this.loadFixedFee();
         this.loadUser();
     }
     CheckoutPage.prototype.presentPopover = function (myEvent) {
@@ -16442,38 +16442,25 @@ var CheckoutPage = (function () {
         this.cartService.paymentMethods().then(function (value) {
             _this.paymentMethods = value.data.payment_methods;
         }, function (error) {
+            _this.alert("Erro", "Verifique a sua ligação à rede e tente novamente.");
         });
     };
-    CheckoutPage.prototype.loadFees = function () {
-        this.settingsService.getFees().then(function (value) {
-            console.log(value);
-        }, function (error) {
-        });
-    };
-    CheckoutPage.prototype.loadFixedFee = function () {
-        this.settingsService.getFixedFee().then(function (value) {
-            console.log(value);
-        }, function (error) {
-        });
-    };
+    // loadFees() {
+    // 	this.settingsService.getFees().then((value) => {
+    // 		console.log(value);
+    // 	}, (error) => {
+    // 	});
+    // }
+    // loadFixedFee() {
+    // 	this.settingsService.getFixedFee().then((value) => {
+    // 		console.log(value);
+    // 	}, (error) => {
+    // 	});
+    // }
     CheckoutPage.prototype.loadUser = function () {
         var _this = this;
         this.userService.get().then(function (value) {
             _this.user = value;
-        }, function (error) {
-        });
-    };
-    CheckoutPage.prototype.loadOpeningTimes = function () {
-        var _this = this;
-        this.settingsService.getOpeningTimes().then(function (data) {
-            if (data) {
-                _this.openingTimes = data;
-            }
-            else {
-                _this.navCtrl.pop();
-                _this.alert("Atenção", "O estabelecimento hoje encontra-se encerrado.");
-            }
-            console.log(_this.openingTimes);
         }, function (error) {
         });
     };
@@ -16570,7 +16557,7 @@ var CheckoutPage = (function () {
 CheckoutPage = __decorate([
     __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_5_ionic_angular__["g" /* IonicPage */])(),
     __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_5" /* Component */])({
-        selector: 'page-checkout',template:/*ion-inline-start:"/home/lribeiro/Sites/aiguaria-takeaway/src/pages/checkout/checkout.html"*/'<ion-header>\n	<ion-navbar>\n		<ion-title>Finalizar encomenda</ion-title>\n	</ion-navbar>\n</ion-header>\n\n<ion-content padding>\n	<ion-row *ngFor="let item of cart.items" padding-left padding-right>\n		<ion-col col-md-6 col-lg-8 no-padding>\n			<p no-margin>{{item.name}}</p>\n			<p no-margin style="font-size: 11px">{{item.measure_name}}</p>\n		</ion-col>\n		<ion-col col-md-6 col-lg-4 text-right no-padding>\n			<ion-row>\n				<ion-col col-6>\n					<p no-margin>{{item.quantity}}</p>\n				</ion-col>\n				<ion-col col-6>\n					<p no-margin>{{item.quantity * item.price }} €</p>\n				</ion-col>\n			</ion-row>\n		</ion-col>\n	</ion-row>\n	<ion-row padding>\n		<ion-col col-lg-8 col-md-6 no-padding>\n		</ion-col>\n		<ion-col text-right no-padding>\n			<ion-row>\n				<ion-col col-8>\n					TOTAL:\n				</ion-col>\n				<ion-col col-4>\n					{{cart.totalPrice}} €\n				</ion-col>\n			</ion-row>\n		</ion-col>\n	</ion-row>\n	<form #checkoutForm="ngForm" novalidate [ngClass]="{\'submitted\': submitted}">\n		<ion-list>\n			<div *ngIf="order.local == \'Domícilio\'">\n				<ion-item padding-bottom no-lines>\n					<ion-label stacked color="primary">Minha morada</ion-label>\n					<ion-toggle [(ngModel)]="myAddress" name="myAddress" (ngModelChange)="changeUserAddress()"></ion-toggle>\n				</ion-item>\n				<ion-item>\n					<ion-label stacked color="primary">Morada</ion-label>\n					<ion-input [(ngModel)]="order.address" name="address" type="text" #address="ngModel" required>\n					</ion-input>\n				</ion-item>\n				<ion-item [ngClass]="{\'invalid\': !postalCodeValidation.valid}">\n					<ion-label stacked color="primary">Código Postal</ion-label>\n					<ion-input [(ngModel)]="order.postal_code" (ngModelChange)="checkLocation(order.postal_code, postalCode)"  [minlength]="8" [maxlength]="8" name="postal_code"  pattern="^\\d{4}-\\d{3}$" max="8" type="text" #postalCode="ngModel" required>\n					</ion-input>\n				</ion-item>\n				<ion-spinner [hidden]="!postalCodeValidation.spinner" margin-left></ion-spinner>\n				<p padding-left [hidden]="!postalCodeValidation.message">\n					<ion-icon name=\'alert\' [hidden]="postalCodeValidation.valid"></ion-icon> \n					{{postalCodeValidation.message}}\n				</p>\n			</div>\n			<!--<ion-item>\n				<ion-label stacked color="primary">\n					Dia		\n					<p style="font-size: 16px; padding-top: 10px; padding-bottom: 5px">{{order.date | date: \'dd/MM/y\'}}</p>		\n				</ion-label>\n			</ion-item>-->\n			<ion-item [ngClass]="{\'invalid\': !hourValidation.valid}">\n				<ion-label stacked color="primary">\n					Hora			\n					<button ion-button rounded icon-only (click)="presentPopover($event)" style="z-index: 1500; position: absolute; right: 16px">\n						<ion-icon name="information"></ion-icon>\n					</button>\n				</ion-label>\n				<ion-datetime [(ngModel)]="order.hour" (ngModelChange)="checkHour(order.hour)" name="hour" #hour="ngModel"  pickerFormat="HH:mm" displayFormat="HH:mm" minuteValues="0,15,30,45" hourValues="{{hoursValue}}" required></ion-datetime>\n			</ion-item>\n			<p padding-left [hidden]="hourValidation.valid">\n				<ion-icon name=\'alert\'></ion-icon> \n				Hora inválida\n			</p>\n			<ion-item [ngClass]="{\'invalid\': !paymentMethodValidation.valid}">\n				<ion-label stacked color="primary">Método de Pagamento</ion-label>\n				<ion-select [(ngModel)]="order.payment_method_id" name="payment_method_id" #paymentMethod="ngModel" required>\n					<ion-option *ngFor="let paymentMethod of paymentMethods" [value]="paymentMethod.id">{{paymentMethod.name}}</ion-option>\n				</ion-select>\n			</ion-item>\n			<ion-item>\n				<ion-label stacked color="primary">NIF <span style="font-size: 10px">(opcional)</span></ion-label>\n				<ion-input [(ngModel)]="order.nif" name="nif" type="number" #nif="ngModel">\n				</ion-input>\n			</ion-item>\n		</ion-list>\n\n		<div padding>\n			<button [disabled]="!checkoutForm.valid || !postalCodeValidation.valid || !hourValidation.valid || !paymentMethodValidation.valid" ion-button (click)="onCheckout(checkoutForm)" type="submit" block>Finalizar</button>\n		</div>\n	</form>\n</ion-content>\n'/*ion-inline-end:"/home/lribeiro/Sites/aiguaria-takeaway/src/pages/checkout/checkout.html"*/,
+        selector: 'page-checkout',template:/*ion-inline-start:"C:\Users\someb\Documents\Sites\aiguaria-takeaway\src\pages\checkout\checkout.html"*/'<ion-header>\n\n	<ion-navbar>\n\n		<ion-title>Finalizar encomenda</ion-title>\n\n	</ion-navbar>\n\n</ion-header>\n\n\n\n<ion-content padding>\n\n	<ion-row *ngFor="let item of cart.items" padding-left padding-right>\n\n		<ion-col col-md-6 col-lg-8 no-padding>\n\n			<p no-margin>{{item.name}}</p>\n\n			<p no-margin style="font-size: 11px">{{item.measure_name}}</p>\n\n		</ion-col>\n\n		<ion-col col-md-6 col-lg-4 text-right no-padding>\n\n			<ion-row>\n\n				<ion-col col-6>\n\n					<p no-margin>{{item.quantity}}</p>\n\n				</ion-col>\n\n				<ion-col col-6>\n\n					<p no-margin>{{item.quantity * item.price }} €</p>\n\n				</ion-col>\n\n			</ion-row>\n\n		</ion-col>\n\n	</ion-row>\n\n	<ion-row padding>\n\n		<ion-col col-lg-8 col-md-6 no-padding>\n\n		</ion-col>\n\n		<ion-col text-right no-padding>\n\n			<ion-row>\n\n				<ion-col col-8>\n\n					TOTAL:\n\n				</ion-col>\n\n				<ion-col col-4>\n\n					{{cart.totalPrice}} €\n\n				</ion-col>\n\n			</ion-row>\n\n		</ion-col>\n\n	</ion-row>\n\n	<form #checkoutForm="ngForm" novalidate [ngClass]="{\'submitted\': submitted}">\n\n		<ion-list>\n\n			<div *ngIf="order.local == \'Domícilio\'">\n\n				<ion-item padding-bottom no-lines>\n\n					<ion-label stacked color="primary">Minha morada</ion-label>\n\n					<ion-toggle [(ngModel)]="myAddress" name="myAddress" (ngModelChange)="changeUserAddress()"></ion-toggle>\n\n				</ion-item>\n\n				<ion-item>\n\n					<ion-label stacked color="primary">Morada</ion-label>\n\n					<ion-input [(ngModel)]="order.address" name="address" type="text" #address="ngModel" required>\n\n					</ion-input>\n\n				</ion-item>\n\n				<ion-item [ngClass]="{\'invalid\': !postalCodeValidation.valid}">\n\n					<ion-label stacked color="primary">Código Postal</ion-label>\n\n					<ion-input [(ngModel)]="order.postal_code" (ngModelChange)="checkLocation(order.postal_code, postalCode)"  [minlength]="8" [maxlength]="8" name="postal_code"  pattern="^\\d{4}-\\d{3}$" max="8" type="text" #postalCode="ngModel" required>\n\n					</ion-input>\n\n				</ion-item>\n\n				<ion-spinner [hidden]="!postalCodeValidation.spinner" margin-left></ion-spinner>\n\n				<p padding-left [hidden]="!postalCodeValidation.message">\n\n					<ion-icon name=\'alert\' [hidden]="postalCodeValidation.valid"></ion-icon> \n\n					{{postalCodeValidation.message}}\n\n				</p>\n\n			</div>\n\n			<!--<ion-item>\n\n				<ion-label stacked color="primary">\n\n					Dia		\n\n					<p style="font-size: 16px; padding-top: 10px; padding-bottom: 5px">{{order.date | date: \'dd/MM/y\'}}</p>		\n\n				</ion-label>\n\n			</ion-item>-->\n\n			<ion-item [ngClass]="{\'invalid\': !hourValidation.valid}">\n\n				<ion-label stacked color="primary">\n\n					Hora			\n\n					<button ion-button rounded icon-only (click)="presentPopover($event)" style="z-index: 1500; position: absolute; right: 16px">\n\n						<ion-icon name="information"></ion-icon>\n\n					</button>\n\n				</ion-label>\n\n				<ion-datetime [(ngModel)]="order.hour" (ngModelChange)="checkHour(order.hour)" name="hour" #hour="ngModel"  pickerFormat="HH:mm" displayFormat="HH:mm" minuteValues="0,15,30,45" hourValues="{{hoursValue}}" required></ion-datetime>\n\n			</ion-item>\n\n			<p padding-left [hidden]="hourValidation.valid">\n\n				<ion-icon name=\'alert\'></ion-icon> \n\n				Hora inválida\n\n			</p>\n\n			<ion-item [ngClass]="{\'invalid\': !paymentMethodValidation.valid}">\n\n				<ion-label stacked color="primary">Método de Pagamento</ion-label>\n\n				<ion-select [(ngModel)]="order.payment_method_id" name="payment_method_id" #paymentMethod="ngModel" required>\n\n					<ion-option *ngFor="let paymentMethod of paymentMethods" [value]="paymentMethod.id">{{paymentMethod.name}}</ion-option>\n\n				</ion-select>\n\n			</ion-item>\n\n			<ion-item>\n\n				<ion-label stacked color="primary">NIF <span style="font-size: 10px">(opcional)</span></ion-label>\n\n				<ion-input [(ngModel)]="order.nif" name="nif" type="number" #nif="ngModel">\n\n				</ion-input>\n\n			</ion-item>\n\n			<p ion-text [hidden]="true" color="danger" padding-left></p>\n\n		</ion-list>\n\n\n\n		<div padding>\n\n			<button [disabled]="!checkoutForm.valid || !postalCodeValidation.valid || !hourValidation.valid || !paymentMethodValidation.valid" ion-button (click)="onCheckout(checkoutForm)" type="submit" block>Finalizar</button>\n\n		</div>\n\n	</form>\n\n</ion-content>\n\n'/*ion-inline-end:"C:\Users\someb\Documents\Sites\aiguaria-takeaway\src\pages\checkout\checkout.html"*/,
         providers: [__WEBPACK_IMPORTED_MODULE_2__providers_cart_service__["b" /* CartService */], __WEBPACK_IMPORTED_MODULE_3__providers_settings_service__["a" /* SettingsService */], __WEBPACK_IMPORTED_MODULE_4__providers_order_service__["a" /* OrderService */], __WEBPACK_IMPORTED_MODULE_1__providers_user_service__["a" /* UserService */]]
     }),
     __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_5_ionic_angular__["s" /* PopoverController */], __WEBPACK_IMPORTED_MODULE_5_ionic_angular__["h" /* NavController */], __WEBPACK_IMPORTED_MODULE_5_ionic_angular__["k" /* NavParams */], __WEBPACK_IMPORTED_MODULE_5_ionic_angular__["j" /* AlertController */], __WEBPACK_IMPORTED_MODULE_3__providers_settings_service__["a" /* SettingsService */], __WEBPACK_IMPORTED_MODULE_2__providers_cart_service__["b" /* CartService */], __WEBPACK_IMPORTED_MODULE_4__providers_order_service__["a" /* OrderService */], __WEBPACK_IMPORTED_MODULE_1__providers_user_service__["a" /* UserService */]])

@@ -16006,7 +16006,7 @@ var PopoverPage = (function () {
 }());
 PopoverPage = __decorate([
     __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* IonicPage */])(),
-    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_5" /* Component */])({template:/*ion-inline-start:"/home/lribeiro/Sites/aiguaria-takeaway/src/pages/checkout-popover/checkout-popover.html"*/'<ion-list>\n    <ion-item *ngFor="let openingTime of openingTimes">\n        {{openingTime.open | formatHour}} - {{openingTime.closed | formatHour}}\n    </ion-item>\n    <p *ngIf="!openingTimes.length">O estabelecimento hoje encontra-se encerrado. Pode fazer encomendas para amanhã</p>\n</ion-list>'/*ion-inline-end:"/home/lribeiro/Sites/aiguaria-takeaway/src/pages/checkout-popover/checkout-popover.html"*/,
+    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_5" /* Component */])({template:/*ion-inline-start:"C:\Users\someb\Documents\Sites\aiguaria-takeaway\src\pages\checkout-popover\checkout-popover.html"*/'<ion-list>\n\n    <ion-item *ngFor="let openingTime of openingTimes">\n\n        {{openingTime.open | formatHour}} - {{openingTime.closed | formatHour}}\n\n    </ion-item>\n\n    <p *ngIf="!openingTimes.length">O estabelecimento hoje encontra-se encerrado. Pode fazer encomendas para amanhã</p>\n\n</ion-list>'/*ion-inline-end:"C:\Users\someb\Documents\Sites\aiguaria-takeaway\src\pages\checkout-popover\checkout-popover.html"*/,
     }),
     __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["p" /* ViewController */],
         __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavController */],

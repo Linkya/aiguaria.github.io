@@ -38892,6 +38892,7 @@ ion-navbar.toolbar {
 .about-header {
   background-size: cover;
   height: 240px;
+  background-position: 50% 20%;
 }
 
 .about-info p {
@@ -38902,6 +38903,10 @@ ion-navbar.toolbar {
 .about-info ion-icon {
   color: #c64f62;
   width: 20px;
+}
+
+.label-ios {
+  font-size: 1.6rem;
 }
 
 .md .about-info [text-right],
@@ -38959,6 +38964,10 @@ page-checkout .datetime-md {
   padding: 8px 8px 8px 0px;
 }
 
+page-checkout .datetime-ios {
+  padding: 6px 8px 11px 16px;
+}
+
 page-user .logo {
   text-align: center;
 }
@@ -38971,6 +38980,14 @@ page-user .logo h1 {
   color: #c64f62;
   margin: 0px;
   padding: 40px 0px;
+}
+
+page-user img {
+  width: 50%;
+  margin: auto;
+  display: block;
+  padding: 16px;
+  max-width: 250px;
 }
 
 page-user .list {
@@ -39095,6 +39112,10 @@ page-menu .button-md:hover:not(.disable-hover) {
 
 page-menu .button-md-light:hover:not(.disable-hover) {
   background-color: #c64f62;
+}
+
+page-menu .item-ios.item-block .item-inner {
+  padding-right: 0;
 }
 
 @media screen and (min-width: 880px) {

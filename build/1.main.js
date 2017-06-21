@@ -16225,11 +16225,12 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 var AboutPage = (function () {
-    function AboutPage(popoverCtrl, settingsService, user, loadingCtrl) {
+    function AboutPage(popoverCtrl, settingsService, user, loadingCtrl, alertCtrl) {
         this.popoverCtrl = popoverCtrl;
         this.settingsService = settingsService;
         this.user = user;
         this.loadingCtrl = loadingCtrl;
+        this.alertCtrl = alertCtrl;
         this.openingTimes = [];
         this.loadAbout();
         this.loadOpeningTimes();
@@ -16250,6 +16251,7 @@ var AboutPage = (function () {
                 _this.about = data;
                 _this.loading.dismiss();
             }, function (error) {
+                _this.alert("Erro", "Verifique a sua ligação à rede e tente novamente.");
                 _this.loading.dismiss();
             });
         });
@@ -16264,15 +16266,23 @@ var AboutPage = (function () {
         }, function (error) {
         });
     };
+    AboutPage.prototype.alert = function (title, subtitle) {
+        var alert = this.alertCtrl.create({
+            title: title,
+            subTitle: subtitle,
+            buttons: ['Ok']
+        });
+        alert.present();
+    };
     return AboutPage;
 }());
 AboutPage = __decorate([
     __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* IonicPage */])(),
     __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_5" /* Component */])({
-        selector: 'page-about',template:/*ion-inline-start:"/home/lribeiro/Sites/aiguaria-takeaway/src/pages/about/about.html"*/'<ion-header>\n	<ion-navbar>\n		<button ion-button menuToggle>\n			<ion-icon name="menu"></ion-icon>\n		</button>\n		<ion-title>Sobre</ion-title>\n	</ion-navbar>\n</ion-header>\n\n<ion-content>\n	<div class="about-header" style="background-image: url(\'assets/img/cover.jpg\')">\n	</div>\n	<div padding class="about-info" *ngIf="about">\n		<!--<h4>A Iguaria</h4>-->\n\n		<ion-list no-lines>\n			<ion-item>\n				<ion-icon name="mail" item-left></ion-icon>\n				<ion-label>{{about.email}}</ion-label>\n			</ion-item>\n\n			<ion-item>\n				<ion-icon name="call" item-left></ion-icon>\n				<ion-label>{{about.phone}}</ion-label>\n			</ion-item>\n		</ion-list>\n\n		<ion-list no-lines *ngIf="openingTimes">\n			<h4 padding-left text-left>Horário</h4>\n			<ion-item *ngFor="let openingTime of openingTimes">\n				{{openingTime.open | formatHour}} - {{openingTime.closed | formatHour}}\n			</ion-item>\n		</ion-list>\n\n		<ion-row responsive-sm>\n			<ion-col col-12>\n				<button ion-button (click)="openSite(about.privacy_link)" type="submit" block>Termos de Utilização</button>\n			</ion-col>\n			<ion-col col-12>\n				<button ion-button (click)="openSite(about.terms_link)" color="light" block>Política de Privacidade</button>\n			</ion-col>\n		</ion-row>\n	</div>\n</ion-content>\n'/*ion-inline-end:"/home/lribeiro/Sites/aiguaria-takeaway/src/pages/about/about.html"*/,
+        selector: 'page-about',template:/*ion-inline-start:"C:\Users\someb\Documents\Sites\aiguaria-takeaway\src\pages\about\about.html"*/'<ion-header>\n\n	<ion-navbar>\n\n		<button ion-button menuToggle>\n\n			<ion-icon name="menu"></ion-icon>\n\n		</button>\n\n		<ion-title>Sobre</ion-title>\n\n	</ion-navbar>\n\n</ion-header>\n\n\n\n<ion-content>\n\n	<div class="about-header" style="background-image: url(\'assets/img/cover.jpg\')">\n\n	</div>\n\n	<div padding class="about-info" *ngIf="about">\n\n		<!--<h4>A Iguaria</h4>-->\n\n\n\n		<ion-list no-lines>\n\n			<ion-item>\n\n				<ion-icon name="mail" item-left></ion-icon>\n\n				<ion-label>{{about.email}}</ion-label>\n\n			</ion-item>\n\n\n\n			<ion-item>\n\n				<ion-icon name="call" item-left></ion-icon>\n\n				<ion-label>{{about.phone}}</ion-label>\n\n			</ion-item>\n\n\n\n			<ion-item>\n\n				<ion-icon name="locate" item-left></ion-icon>\n\n				<ion-label>\n\n					{{about.address}}\n\n					<br>\n\n					{{about.postalcode}} {{about.locality}}\n\n				</ion-label>\n\n			</ion-item>\n\n		</ion-list>\n\n\n\n		<ion-list no-lines>\n\n			<h4 padding-left text-left>Horário de funcionamento</h4>\n\n			<ion-item>\n\n				<strong>Terça a Sábado:</strong><br> \n\n				12h00 - 14h30 | 19h00 - 21h30\n\n			</ion-item>\n\n			<ion-item>\n\n				<strong>Domingo:</strong><br> \n\n				12h00 – 15h00\n\n			</ion-item>\n\n			<!--<ion-item *ngFor="let openingTime of openingTimes">\n\n				{{openingTime.open | formatHour}} - {{openingTime.closed | formatHour}}\n\n			</ion-item>-->\n\n		</ion-list>\n\n\n\n		<ion-row responsive-sm>\n\n			<ion-col col-12>\n\n				<button ion-button (click)="openSite(about.privacy_link)" type="submit" block>Termos de Utilização</button>\n\n			</ion-col>\n\n			<ion-col col-12>\n\n				<button ion-button (click)="openSite(about.terms_link)" color="light" block>Política de Privacidade</button>\n\n			</ion-col>\n\n		</ion-row>\n\n	</div>\n\n</ion-content>\n\n'/*ion-inline-end:"C:\Users\someb\Documents\Sites\aiguaria-takeaway\src\pages\about\about.html"*/,
         providers: [__WEBPACK_IMPORTED_MODULE_3__providers_settings_service__["a" /* SettingsService */]]
     }),
-    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["s" /* PopoverController */], __WEBPACK_IMPORTED_MODULE_3__providers_settings_service__["a" /* SettingsService */], __WEBPACK_IMPORTED_MODULE_2__providers_user_service__["a" /* UserService */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["m" /* LoadingController */]])
+    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["s" /* PopoverController */], __WEBPACK_IMPORTED_MODULE_3__providers_settings_service__["a" /* SettingsService */], __WEBPACK_IMPORTED_MODULE_2__providers_user_service__["a" /* UserService */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["m" /* LoadingController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* AlertController */]])
 ], AboutPage);
 
 //# sourceMappingURL=about.js.map

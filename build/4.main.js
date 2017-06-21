@@ -340,7 +340,7 @@ var ProductService = (function () {
     }
     ProductService.prototype.getFixed = function (local) {
         var _this = this;
-        return new Promise(function (resolve) {
+        return new Promise(function (resolve, reject) {
             var url = _this.API_URL + '/tkproduct/fixed?local=' + local;
             var _headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["b" /* Headers */]({ 'Authorization': _this.ENTITY_ID });
             var _options = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["c" /* RequestOptions */]({ headers: _headers });
@@ -349,14 +349,16 @@ var ProductService = (function () {
                 .subscribe(function (data) {
                 _this.fixedMenu = _this.organizeByCategory(data.data.products);
                 resolve(_this.fixedMenu);
+            }, function (error) {
+                console.log(error);
+                reject(error);
             });
         });
     };
     ProductService.prototype.getDaily = function (local) {
         var _this = this;
-        return new Promise(function (resolve) {
-            var url = _this.API_URL + '/tkproduct/daily?local=';
-            +local;
+        return new Promise(function (resolve, reject) {
+            var url = _this.API_URL + '/tkproduct/daily?local=' + local;
             var _headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["b" /* Headers */]({ 'Authorization': _this.ENTITY_ID });
             var _options = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["c" /* RequestOptions */]({ headers: _headers });
             _this.http.get(url, _options)
@@ -364,6 +366,9 @@ var ProductService = (function () {
                 .subscribe(function (data) {
                 _this.dailyMenu = _this.organizeByCategory(data.data.products);
                 resolve(_this.dailyMenu);
+            }, function (error) {
+                console.log(error);
+                reject(error);
             });
         });
     };
@@ -380,7 +385,6 @@ var ProductService = (function () {
                 organized.push(group);
             }
         });
-        console.log(organized);
         return organized;
     };
     return ProductService;
@@ -455,7 +459,7 @@ var OrderPage = (function () {
         this.loading.present().then(function () {
             _this.orderService.all()
                 .then(function (data) {
-                _this.orders = data;
+                _this.orders = data.filter(function (d) { return d.state == 'Entregue' || d.state == 'Cancelada'; });
                 _this.pending = data.filter(function (d) { return d.state == 'Submetida' || d.state == 'Em preparação' || d.state == 'Em processo de entrega'; });
                 _this.loading.dismiss();
             }, function (error) {
@@ -473,7 +477,7 @@ var OrderPage = (function () {
 OrderPage = __decorate([
     __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* IonicPage */])(),
     __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_5" /* Component */])({
-        selector: 'page-order',template:/*ion-inline-start:"/home/lribeiro/Sites/aiguaria-takeaway/src/pages/order/order.html"*/'<ion-header>\n	<ion-navbar no-border-bottom>\n		<button ion-button menuToggle>\n			<ion-icon name="menu"></ion-icon>\n		</button>\n\n		<ion-segment [(ngModel)]="segment">\n			<ion-segment-button value="pending">\n				Pendentes\n			</ion-segment-button>\n			<ion-segment-button value="all">\n				Todas\n			</ion-segment-button>\n		</ion-segment>\n\n		<ion-buttons end>\n			\n		</ion-buttons>\n	</ion-navbar>\n</ion-header>\n\n<ion-content>\n	<div [ngSwitch]="segment">\n	 <ion-list *ngSwitchCase="\'pending\'">\n		<ion-item (click)="detail(order)" *ngFor="let order of pending">\n			<h2>#{{order.id}}</h2>\n			<p>{{order.created_at}}</p>\n			<div class="item-note" item-right>\n				<p text-right>{{order.state}}</p>\n				<p text-right>{{order.total}}€</p>\n			</div>\n		</ion-item>\n	 </ion-list>\n	 <ion-list *ngSwitchCase="\'all\'">\n		<ion-item (click)="detail(order)" *ngFor="let order of orders">\n			<h2>#{{order.id}}</h2>\n			<p>{{order.created_at}}</p>\n			<div class="item-note" item-right>\n				<p text-right>{{order.state}}</p>\n				<p text-right>{{order.total}}€</p>\n			</div>\n		</ion-item>\n	 </ion-list>\n	</div>\n</ion-content>'/*ion-inline-end:"/home/lribeiro/Sites/aiguaria-takeaway/src/pages/order/order.html"*/,
+        selector: 'page-order',template:/*ion-inline-start:"C:\Users\someb\Documents\Sites\aiguaria-takeaway\src\pages\order\order.html"*/'<ion-header>\n\n	<ion-navbar no-border-bottom>\n\n		<button ion-button menuToggle>\n\n			<ion-icon name="menu"></ion-icon>\n\n		</button>\n\n		\n\n		<ion-title [hidden]="true">Encomendas</ion-title>\n\n		<ion-segment [(ngModel)]="segment">\n\n			<ion-segment-button value="pending">\n\n				Pendentes\n\n			</ion-segment-button>\n\n			<ion-segment-button value="completed">\n\n				Concluídas\n\n			</ion-segment-button>\n\n		</ion-segment>\n\n\n\n		<ion-buttons end>\n\n			\n\n		</ion-buttons>\n\n	</ion-navbar>\n\n</ion-header>\n\n\n\n<ion-content>\n\n	<div [ngSwitch]="segment">\n\n	 <ion-list *ngSwitchCase="\'pending\'">\n\n		<ion-item (click)="detail(order)" *ngFor="let order of pending">\n\n			<h2>#{{order.id}}</h2>\n\n			<p>{{order.created_at}}</p>\n\n			<div class="item-note" item-right>\n\n				<p text-right>{{order.state}}</p>\n\n				<p text-right>{{order.total}}€</p>\n\n			</div>\n\n		</ion-item>\n\n	 </ion-list>\n\n	 <ion-list *ngSwitchCase="\'completed\'">\n\n		<ion-item (click)="detail(order)" *ngFor="let order of orders">\n\n			<h2>#{{order.id}}</h2>\n\n			<p>{{order.created_at}}</p>\n\n			<div class="item-note" item-right>\n\n				<p text-right>{{order.state}}</p>\n\n				<p text-right>{{order.total}}€</p>\n\n			</div>\n\n		</ion-item>\n\n	 </ion-list>\n\n	</div>\n\n</ion-content>'/*ion-inline-end:"C:\Users\someb\Documents\Sites\aiguaria-takeaway\src\pages\order\order.html"*/,
         providers: [__WEBPACK_IMPORTED_MODULE_2__providers_menu_service__["a" /* ProductService */], __WEBPACK_IMPORTED_MODULE_4__providers_cart_service__["b" /* CartService */], __WEBPACK_IMPORTED_MODULE_5__providers_order_service__["a" /* OrderService */]]
     }),
     __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* AlertController */],

@@ -554,7 +554,7 @@ var ProductService = (function () {
     }
     ProductService.prototype.getFixed = function (local) {
         var _this = this;
-        return new Promise(function (resolve) {
+        return new Promise(function (resolve, reject) {
             var url = _this.API_URL + '/tkproduct/fixed?local=' + local;
             var _headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["b" /* Headers */]({ 'Authorization': _this.ENTITY_ID });
             var _options = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["c" /* RequestOptions */]({ headers: _headers });
@@ -563,14 +563,16 @@ var ProductService = (function () {
                 .subscribe(function (data) {
                 _this.fixedMenu = _this.organizeByCategory(data.data.products);
                 resolve(_this.fixedMenu);
+            }, function (error) {
+                console.log(error);
+                reject(error);
             });
         });
     };
     ProductService.prototype.getDaily = function (local) {
         var _this = this;
-        return new Promise(function (resolve) {
-            var url = _this.API_URL + '/tkproduct/daily?local=';
-            +local;
+        return new Promise(function (resolve, reject) {
+            var url = _this.API_URL + '/tkproduct/daily?local=' + local;
             var _headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["b" /* Headers */]({ 'Authorization': _this.ENTITY_ID });
             var _options = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["c" /* RequestOptions */]({ headers: _headers });
             _this.http.get(url, _options)
@@ -578,6 +580,9 @@ var ProductService = (function () {
                 .subscribe(function (data) {
                 _this.dailyMenu = _this.organizeByCategory(data.data.products);
                 resolve(_this.dailyMenu);
+            }, function (error) {
+                console.log(error);
+                reject(error);
             });
         });
     };
@@ -594,7 +599,6 @@ var ProductService = (function () {
                 organized.push(group);
             }
         });
-        console.log(organized);
         return organized;
     };
     return ProductService;
@@ -687,7 +691,6 @@ var MenuPage = (function () {
         else {
             this.platform = "android";
         }
-        console.log(this.local);
         var alert = this.alertCtrl.create({
             title: 'Local de Entrega',
         });
@@ -821,7 +824,13 @@ var MenuPage = (function () {
                     .then(function (data) {
                     _this.dailyMenu = _this.addMeasures(data);
                     _this.loading.dismiss();
+                }, function (error) {
+                    _this.alert("Erro", "Verifique a sua ligação à rede e tente novamente.");
+                    _this.loading.dismiss();
                 });
+            }, function (error) {
+                _this.alert("Erro", "Verifique a sua ligação à rede e tente novamente.");
+                _this.loading.dismiss();
             });
         });
     };
@@ -939,7 +948,13 @@ var MenuPage = (function () {
                 .then(function (data) {
                 _this.dailyMenu = _this.addMeasures(data);
                 refresher.complete();
+            }, function (error) {
+                _this.alert("Erro", "Verifique a sua ligação à rende e tente novamente.");
+                refresher.complete();
             });
+        }, function (error) {
+            _this.alert("Erro", "Verifique a sua ligação à rende e tente novamente.");
+            refresher.complete();
         });
     };
     MenuPage.prototype.alert = function (title, subtitle) {
@@ -959,7 +974,7 @@ __decorate([
 MenuPage = __decorate([
     __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* IonicPage */])(),
     __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_5" /* Component */])({
-        selector: 'page-menu',template:/*ion-inline-start:"/home/lribeiro/Sites/aiguaria-takeaway/src/pages/menu/menu.html"*/'<ion-header>\n	<ion-navbar no-border-bottom>\n		<button ion-button menuToggle>\n			<ion-icon name="menu"></ion-icon>\n		</button>\n\n		<ion-segment [(ngModel)]="segment">\n			<ion-segment-button value="daily">\n				Ementa Diária\n			</ion-segment-button>\n			<ion-segment-button value="fixed">\n				Ementa Fixa\n			</ion-segment-button>\n		</ion-segment>\n\n		<ion-buttons end>\n			<button ion-button icon-only (click)="presentFilter()">\n				<ion-icon name="options"></ion-icon>\n			</button>\n		<button ion-button icon-only (click)="cartSegment()">\n				<ion-icon name="basket"></ion-icon>\n				<ion-badge item-right>{{cart.totalQuantity}}</ion-badge>\n			</button>\n		</ion-buttons>\n	</ion-navbar>\n\n	<!--<ion-toolbar no-border-top>\n		<ion-searchbar color="primary"\n									 [(ngModel)]="queryText"\n									 (ionInput)="updateSchedule()"\n									 placeholder="Search">\n		</ion-searchbar>\n	</ion-toolbar>-->\n</ion-header>\n\n<ion-content>\n	<ion-refresher (ionRefresh)="doRefresh($event)">\n    	<ion-refresher-content></ion-refresher-content>\n  	</ion-refresher>\n	<div [ngSwitch]="segment">\n	 <ion-list *ngSwitchCase="\'fixed\'">\n		 <ion-item-group *ngFor="let category of fixedMenu" [hidden]="category.hide">\n			<ion-item-divider sticky>\n        		<ion-label>\n          		{{category.name}}\n        		</ion-label>\n      		</ion-item-divider>\n			<ion-item *ngFor="let product of category.items" [attr.track]="product.category | lowercase">\n				<h2>{{product.name}}</h2>\n				<p>{{product.description}}</p>\n				<button color="danger" outline ion-button *ngFor="let measure of product.measures" (click)="addToCart(product, measure)">\n					<span style="margin-right: 10px">{{measure.name}}</span>\n					{{measure.value}}€\n					<span *ngIf="measure.quantity > 0" style="margin-left: 10px">{{measure.quantity}}</span>\n				</button>\n			</ion-item>\n		 </ion-item-group>\n	 </ion-list>\n	 <ion-list *ngSwitchCase="\'daily\'">\n		 <ion-item-group *ngFor="let category of dailyMenu" [hidden]="category.hide">\n			<ion-item-divider sticky>\n        		<ion-label>\n          		{{category.name}}\n        		</ion-label>\n      		</ion-item-divider>\n			<ion-item *ngFor="let product of category.items" [attr.track]="product.category | lowercase">\n				<h2>{{product.name}}</h2>\n				<p>{{product.description}}</p>\n				<button color="danger" outline ion-button *ngFor="let measure of product.measures" (click)="addToCart(product, measure)">\n					<span style="margin-right: 10px">{{measure.name}}</span>\n					{{measure.value}}€\n					<span *ngIf="measure.quantity > 0" style="margin-left: 10px">{{measure.quantity}}</span>\n				</button>\n			</ion-item>\n		 </ion-item-group>\n	 </ion-list>\n	 <ion-list *ngSwitchCase="\'cart\'">\n		 <ion-item-sliding  *ngFor="let product of cart.items">\n			<ion-item [attr.track]="product.category | lowercase">\n			<h2>{{product.name}}</h2>\n			<p>{{product.description}}</p>\n			<p>{{product.measure_name}}</p>\n			<div class="item-note" item-right>\n				<ion-row align-items-center>\n					<ion-col text-right>\n						<div text-center style="min-width: 110px">\n							<ion-icon name="arrow-back" (click)="decrementQuantity(product)"></ion-icon>\n							<div style="font-size: 20px; display: inline-block; width: 25px">{{product.quantity}}</div>\n							<ion-icon name="arrow-forward"  (click)="incrementQuantity(product)"></ion-icon>\n						</div>\n					</ion-col>\n					<ion-col text-right [hidden]="platform != \'desktop\'" style="max-width: 80px">\n						<button color="danger" outline ion-button icon-only (click)="removeFromCart(product)">\n							<ion-icon name="trash"></ion-icon>\n						</button>\n					</ion-col>\n				</ion-row>\n			</div>\n			</ion-item>\n			<ion-item-options side="right" [hidden]="platform == \'desktop\'">\n      			<button color="danger" ion-button (click)="removeFromCart(product)">\n					<ion-icon name="trash"></ion-icon>\n					Remover\n				</button>\n    		</ion-item-options>\n		</ion-item-sliding>\n	 </ion-list>\n	</div>\n</ion-content>\n\n<ion-footer no-border>\n	<ion-toolbar>\n		<ion-title>Total: {{cart.totalPrice}}€</ion-title>\n		<button ion-button color="light" (click)="cleanCart()">\n			Esvaziar\n		</button>\n		<button ion-button color="primary" (click)="goToCheckoutPage()" [disabled]="cart.totalPrice == 0">\n			Checkout\n		</button>\n	</ion-toolbar>\n</ion-footer>'/*ion-inline-end:"/home/lribeiro/Sites/aiguaria-takeaway/src/pages/menu/menu.html"*/,
+        selector: 'page-menu',template:/*ion-inline-start:"C:\Users\someb\Documents\Sites\aiguaria-takeaway\src\pages\menu\menu.html"*/'<ion-header>\n\n	<ion-navbar no-border-bottom>\n\n		<button ion-button menuToggle>\n\n			<ion-icon name="menu"></ion-icon>\n\n		</button>\n\n\n\n		<ion-title [hidden]="true">Ementa</ion-title>\n\n\n\n		<ion-segment [(ngModel)]="segment">\n\n			<ion-segment-button value="daily">\n\n				Ementa Diária\n\n			</ion-segment-button>\n\n			<ion-segment-button value="fixed">\n\n				Ementa Fixa\n\n			</ion-segment-button>\n\n		</ion-segment>\n\n\n\n		<ion-buttons end>\n\n			<button ion-button icon-only (click)="presentFilter()">\n\n				<ion-icon name="options"></ion-icon>\n\n			</button>\n\n		<button ion-button icon-only (click)="cartSegment()">\n\n				<ion-icon name="basket"></ion-icon>\n\n				<ion-badge item-right>{{cart.totalQuantity}}</ion-badge>\n\n			</button>\n\n		</ion-buttons>\n\n	</ion-navbar>\n\n\n\n	<!--<ion-toolbar no-border-top>\n\n		<ion-searchbar color="primary"\n\n									 [(ngModel)]="queryText"\n\n									 (ionInput)="updateSchedule()"\n\n									 placeholder="Search">\n\n		</ion-searchbar>\n\n	</ion-toolbar>-->\n\n</ion-header>\n\n\n\n<ion-content>\n\n	<ion-refresher (ionRefresh)="doRefresh($event)">\n\n    	<ion-refresher-content></ion-refresher-content>\n\n  	</ion-refresher>\n\n	<div [ngSwitch]="segment">\n\n	 <ion-list *ngSwitchCase="\'fixed\'">\n\n		 <ion-item-group *ngFor="let category of fixedMenu" [hidden]="category.hide">\n\n			<ion-item-divider sticky>\n\n        		<ion-label>\n\n          		{{category.name}}\n\n        		</ion-label>\n\n      		</ion-item-divider>\n\n			<ion-item *ngFor="let product of category.items" [attr.track]="product.category | lowercase">\n\n				<h2>{{product.name}}</h2>\n\n				<p>{{product.description}}</p>\n\n				<button outline ion-button *ngFor="let measure of product.measures" (click)="addToCart(product, measure)">\n\n					<span style="margin-right: 10px">{{measure.name}}</span>\n\n					<span>{{measure.value}}€</span>\n\n					<span *ngIf="measure.quantity > 0" style="margin-left: 10px">{{measure.quantity}}</span>\n\n				</button>\n\n			</ion-item>\n\n		 </ion-item-group>\n\n	 </ion-list>\n\n	 <ion-list *ngSwitchCase="\'daily\'">\n\n		 <ion-item-group *ngFor="let category of dailyMenu" [hidden]="category.hide">\n\n			<ion-item-divider sticky>\n\n        		<ion-label>\n\n          		{{category.name}}\n\n        		</ion-label>\n\n      		</ion-item-divider>\n\n			<ion-item *ngFor="let product of category.items" [attr.track]="product.category | lowercase">\n\n				<h2>{{product.name}}</h2>\n\n				<p>{{product.description}}</p>\n\n				<button outline ion-button *ngFor="let measure of product.measures" (click)="addToCart(product, measure)">\n\n					<span style="margin-right: 10px">{{measure.name}}</span>\n\n					<span>{{measure.value}}€</span>\n\n					<span *ngIf="measure.quantity > 0" style="margin-left: 10px">{{measure.quantity}}</span>\n\n				</button>\n\n			</ion-item>\n\n		 </ion-item-group>\n\n	 </ion-list>\n\n	 <ion-list *ngSwitchCase="\'cart\'">\n\n		 <ion-item-sliding  *ngFor="let product of cart.items">\n\n			<ion-item [attr.track]="product.category | lowercase">\n\n			<h2>{{product.name}}</h2>\n\n			<p>{{product.description}}</p>\n\n			<p>{{product.measure_name}}</p>\n\n			<div class="item-note" item-right>\n\n				<ion-row align-items-center>\n\n					<ion-col text-right>\n\n						<div text-center style="min-width: 110px">\n\n							<ion-icon name="arrow-back" (click)="decrementQuantity(product)"></ion-icon>\n\n							<div style="font-size: 20px; display: inline-block; width: 25px">{{product.quantity}}</div>\n\n							<ion-icon name="arrow-forward"  (click)="incrementQuantity(product)"></ion-icon>\n\n						</div>\n\n					</ion-col>\n\n					<ion-col text-right [hidden]="platform != \'desktop\'" style="max-width: 80px">\n\n						<button color="danger" outline ion-button icon-only (click)="removeFromCart(product)">\n\n							<ion-icon name="trash"></ion-icon>\n\n						</button>\n\n					</ion-col>\n\n				</ion-row>\n\n			</div>\n\n			</ion-item>\n\n			<ion-item-options side="right" [hidden]="platform == \'desktop\'">\n\n      			<button color="danger" ion-button (click)="removeFromCart(product)">\n\n					<ion-icon name="trash"></ion-icon>\n\n					Remover\n\n				</button>\n\n    		</ion-item-options>\n\n		</ion-item-sliding>\n\n	 </ion-list>\n\n	</div>\n\n</ion-content>\n\n\n\n<ion-footer no-border>\n\n	<ion-toolbar>\n\n		<ion-title>Total: {{cart.totalPrice}}€</ion-title>\n\n		<button ion-button color="light" (click)="cleanCart()">\n\n			Esvaziar\n\n		</button>\n\n		<button ion-button color="primary" (click)="goToCheckoutPage()" [disabled]="cart.totalPrice == 0">\n\n			Checkout\n\n		</button>\n\n	</ion-toolbar>\n\n</ion-footer>'/*ion-inline-end:"C:\Users\someb\Documents\Sites\aiguaria-takeaway\src\pages\menu\menu.html"*/,
         providers: [__WEBPACK_IMPORTED_MODULE_3__providers_menu_service__["a" /* ProductService */], __WEBPACK_IMPORTED_MODULE_6__providers_cart_service__["b" /* CartService */], __WEBPACK_IMPORTED_MODULE_7__providers_order_service__["a" /* OrderService */], __WEBPACK_IMPORTED_MODULE_5__providers_settings_service__["a" /* SettingsService */]]
     }),
     __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* AlertController */],
