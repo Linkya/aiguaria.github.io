@@ -1,5 +1,5 @@
 {
-  "name": "aiguaria.linkya.pt",
+  "name": "aiguaria.linkya.xyz",
   "short_name": "A Iguaria Takeaway",
   "start_url": "index.html",
   "display": "standalone",
@@ -8,6 +8,6 @@
     "sizes": "512x512",
     "type": "image/png"
   }],
-  "background_color": "#387ef5",
-  "theme_color": "#387ef5"
+  "background_color": "#c64f62",
+  "theme_color": "#c64f62"
 }
