@@ -96,7 +96,7 @@ var CartService = (function () {
     CartService.prototype.addItem = function (item, measure) {
         var _this = this;
         return this.get().then(function (cart) {
-            console.log(cart);
+            // console.log(cart);
             var auxItem = cart.items.find(function (p) { return p.id === item.id && p.measure_name === measure.name; });
             if (!auxItem) {
                 var newItem = item;
@@ -119,7 +119,7 @@ var CartService = (function () {
     CartService.prototype.incrementQuantity = function (item) {
         var _this = this;
         return this.get().then(function (cart) {
-            console.log(cart);
+            // console.log(cart);
             var auxItem = cart.items.find(function (p) { return p.id === item.id && p.measure_name === item.measure_name; });
             var index = cart.items.indexOf(auxItem);
             cart.items[index].quantity++;
@@ -193,11 +193,10 @@ var CartService = (function () {
 }());
 CartService = __decorate([
     __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["c" /* Injectable */])(),
-    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_2_ionic_angular__["d" /* Events */],
-        __WEBPACK_IMPORTED_MODULE_3__ionic_storage__["b" /* Storage */],
-        __WEBPACK_IMPORTED_MODULE_1__angular_http__["d" /* Http */]])
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["d" /* Events */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["d" /* Events */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_3__ionic_storage__["b" /* Storage */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__ionic_storage__["b" /* Storage */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_1__angular_http__["d" /* Http */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_http__["d" /* Http */]) === "function" && _c || Object])
 ], CartService);
 
+var _a, _b, _c;
 //# sourceMappingURL=cart-service.js.map
 
 /***/ }),
@@ -234,10 +233,10 @@ var OrderDetailPage = (function () {
         this.navParams = navParams;
         this.order = new __WEBPACK_IMPORTED_MODULE_2__providers_cart_service__["a" /* Order */]();
         this.order = this.navParams.data.order;
-        console.log(this.order);
+        // console.log(this.order);
     }
     OrderDetailPage.prototype.ionViewDidLoad = function () {
-        console.log('ionViewDidLoad OrderDetailPage');
+        // console.log('ionViewDidLoad OrderDetailPage');
     };
     return OrderDetailPage;
 }());
@@ -246,9 +245,10 @@ OrderDetailPage = __decorate([
     __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_5" /* Component */])({
         selector: 'page-order-detail',template:/*ion-inline-start:"C:\Users\someb\Documents\Sites\aiguaria-takeaway\src\pages\order-detail\order-detail.html"*/'<ion-header>\n	<ion-navbar>\n		<ion-title>#{{order.id}}</ion-title>\n	</ion-navbar>\n</ion-header>\n\n\n<ion-content padding>\n	<ion-row *ngFor="let item of order.items" padding-left padding-right>\n		<ion-col col-md-6 col-lg-8 no-padding>\n			<p no-margin>{{item.name}}</p>\n			<p no-margin style="font-size: 11px">{{item.measure_name}}</p>\n		</ion-col>\n		<ion-col col-md-6 col-lg-4 text-right no-padding>\n			<ion-row>\n				<ion-col col-6>\n					<p no-margin>{{item.quantity}}</p>\n				</ion-col>\n				<ion-col col-6>\n					<p no-margin>{{item.quantity * item.price }} €</p>\n				</ion-col>\n			</ion-row>\n		</ion-col>\n	</ion-row>\n	<ion-row padding>\n		<ion-col col-lg-8 col-md-6 no-padding>\n		</ion-col>\n		<ion-col text-right no-padding>\n			<ion-row>\n				<ion-col align-right>\n					TOTAL:\n				</ion-col>\n				<ion-col>\n					{{order.total}} €\n				</ion-col>\n			</ion-row>\n		</ion-col>\n	</ion-row>\n</ion-content>\n'/*ion-inline-end:"C:\Users\someb\Documents\Sites\aiguaria-takeaway\src\pages\order-detail\order-detail.html"*/,
     }),
-    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["k" /* NavParams */]])
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavController */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["k" /* NavParams */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["k" /* NavParams */]) === "function" && _b || Object])
 ], OrderDetailPage);
 
+var _a, _b;
 //# sourceMappingURL=order-detail.js.map
 
 /***/ })

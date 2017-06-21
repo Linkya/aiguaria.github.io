@@ -96,7 +96,7 @@ var SettingsService = (function () {
         this.userService = userService;
         this.API_URL = 'http://172.24.62.104/link.eddmi.com/index.php/takeaway/';
         this.ENTITY_ID = 2;
-        console.log('Hello SettingsService Provider');
+        // console.log('Hello SettingsService Provider');
     }
     SettingsService.prototype.get = function () {
         var _this = this;
@@ -111,7 +111,7 @@ var SettingsService = (function () {
                 .map(function (res) { return res.json(); })
                 .subscribe(function (data) {
                 _this.about = data.data.settings;
-                console.log(_this.about);
+                // console.log(this.about);
                 resolve(_this.about);
             }, function (error) {
                 reject(error);
@@ -249,7 +249,7 @@ var SettingsService = (function () {
                                 response.status = "success";
                                 response.address = address;
                                 response.locality = locality;
-                                console.log(response.distance, response.address);
+                                // console.log(response.distance, response.address);
                                 resolve(response);
                             }
                             else {
@@ -271,9 +271,10 @@ var SettingsService = (function () {
 }());
 SettingsService = __decorate([
     __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["c" /* Injectable */])(),
-    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__angular_http__["d" /* Http */], __WEBPACK_IMPORTED_MODULE_2__user_service__["a" /* UserService */]])
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__angular_http__["d" /* Http */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_http__["d" /* Http */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_2__user_service__["a" /* UserService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__user_service__["a" /* UserService */]) === "function" && _b || Object])
 ], SettingsService);
 
+var _a, _b;
 //# sourceMappingURL=settings-service.js.map
 
 /***/ }),
@@ -333,7 +334,7 @@ var CartService = (function () {
     CartService.prototype.addItem = function (item, measure) {
         var _this = this;
         return this.get().then(function (cart) {
-            console.log(cart);
+            // console.log(cart);
             var auxItem = cart.items.find(function (p) { return p.id === item.id && p.measure_name === measure.name; });
             if (!auxItem) {
                 var newItem = item;
@@ -356,7 +357,7 @@ var CartService = (function () {
     CartService.prototype.incrementQuantity = function (item) {
         var _this = this;
         return this.get().then(function (cart) {
-            console.log(cart);
+            // console.log(cart);
             var auxItem = cart.items.find(function (p) { return p.id === item.id && p.measure_name === item.measure_name; });
             var index = cart.items.indexOf(auxItem);
             cart.items[index].quantity++;
@@ -430,11 +431,10 @@ var CartService = (function () {
 }());
 CartService = __decorate([
     __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["c" /* Injectable */])(),
-    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_2_ionic_angular__["d" /* Events */],
-        __WEBPACK_IMPORTED_MODULE_3__ionic_storage__["b" /* Storage */],
-        __WEBPACK_IMPORTED_MODULE_1__angular_http__["d" /* Http */]])
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["d" /* Events */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["d" /* Events */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_3__ionic_storage__["b" /* Storage */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__ionic_storage__["b" /* Storage */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_1__angular_http__["d" /* Http */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_http__["d" /* Http */]) === "function" && _c || Object])
 ], CartService);
 
+var _a, _b, _c;
 //# sourceMappingURL=cart-service.js.map
 
 /***/ }),
@@ -470,7 +470,7 @@ var OrderService = (function () {
         this.http = http;
         this.userService = userService;
         this.API_URL = 'http://172.24.62.104/link.eddmi.com/index.php/takeaway/';
-        console.log('Hello OrderService Provider');
+        // console.log('Hello OrderService Provider');
     }
     OrderService.prototype.all = function () {
         var _this = this;
@@ -500,10 +500,10 @@ var OrderService = (function () {
                 _this.http.post(url, order, _options)
                     .map(function (res) { return res.json(); })
                     .subscribe(function (data) {
-                    console.log(data);
+                    // console.log(data);
                     resolve(data);
                 }, function (error) {
-                    console.log(error);
+                    // console.log(error);
                     reject(error);
                 });
             });
@@ -514,9 +514,10 @@ var OrderService = (function () {
 }());
 OrderService = __decorate([
     __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["c" /* Injectable */])(),
-    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__angular_http__["d" /* Http */], __WEBPACK_IMPORTED_MODULE_2__user_service__["a" /* UserService */]])
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__angular_http__["d" /* Http */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_http__["d" /* Http */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_2__user_service__["a" /* UserService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__user_service__["a" /* UserService */]) === "function" && _b || Object])
 ], OrderService);
 
+var _a, _b;
 //# sourceMappingURL=order-service.js.map
 
 /***/ }),
@@ -550,7 +551,7 @@ var ProductService = (function () {
         this.http = http;
         this.API_URL = 'http://172.24.62.104/link.eddmi.com/index.php/takeaway/';
         this.ENTITY_ID = 2;
-        console.log('Hello ProductService Provider');
+        // console.log('Hello ProductService Provider');
     }
     ProductService.prototype.getFixed = function (local) {
         var _this = this;
@@ -564,7 +565,7 @@ var ProductService = (function () {
                 _this.fixedMenu = _this.organizeByCategory(data.data.products);
                 resolve(_this.fixedMenu);
             }, function (error) {
-                console.log(error);
+                // console.log(error);
                 reject(error);
             });
         });
@@ -581,7 +582,7 @@ var ProductService = (function () {
                 _this.dailyMenu = _this.organizeByCategory(data.data.products);
                 resolve(_this.dailyMenu);
             }, function (error) {
-                console.log(error);
+                // console.log(error);
                 reject(error);
             });
         });
@@ -605,9 +606,10 @@ var ProductService = (function () {
 }());
 ProductService = __decorate([
     __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["c" /* Injectable */])(),
-    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__angular_http__["d" /* Http */]])
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__angular_http__["d" /* Http */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_http__["d" /* Http */]) === "function" && _a || Object])
 ], ProductService);
 
+var _a;
 //# sourceMappingURL=menu-service.js.map
 
 /***/ }),
@@ -680,7 +682,7 @@ var MenuPage = (function () {
         this.app.setTitle('menu');
         // this.cartService.set(this.cart);
         this.user.hasLoggedIn().then(function (data) {
-            console.log("user", data);
+            // console.log("user", data);
         });
         if (this.plt.is('core')) {
             this.platform = "desktop";
@@ -749,7 +751,6 @@ var MenuPage = (function () {
                 var auxMeasure = auxItem.measures.find(function (m) { return m.name === product.measure_name; });
                 if (auxMeasure) {
                     auxMeasure.quantity = product.quantity + 1;
-                    console.log(auxMeasure);
                 }
             }
             _this.cart = cart;
@@ -764,7 +765,6 @@ var MenuPage = (function () {
                 var auxMeasure = auxItem.measures.find(function (m) { return m.name === product.measure_name; });
                 if (auxMeasure) {
                     auxMeasure.quantity = product.quantity - 1;
-                    console.log(auxMeasure);
                 }
             }
             _this.cart = cart;
@@ -855,7 +855,6 @@ var MenuPage = (function () {
         modal.onWillDismiss(function (data) {
             if (data) {
                 _this.excludeCategories = data;
-                console.log(_this.excludeCategories);
                 _this.applyFilter();
             }
         });
@@ -865,7 +864,6 @@ var MenuPage = (function () {
         this.fixedMenu.forEach(function (fixed) {
             fixed.hide = false;
             _this.excludeCategories.forEach(function (category) {
-                console.log(fixed.category, category);
                 if (fixed.name == category) {
                     fixed.hide = true;
                 }
@@ -874,7 +872,6 @@ var MenuPage = (function () {
         this.dailyMenu.forEach(function (daily) {
             daily.hide = false;
             _this.excludeCategories.forEach(function (category) {
-                console.log(daily.category, category);
                 if (daily.name == category) {
                     daily.hide = true;
                 }
@@ -906,24 +903,24 @@ var MenuPage = (function () {
                         });
                     }
                     else {
-                        var alert_1 = _this.alertCtrl.create({
+                        var alert = _this.alertCtrl.create({
                             title: 'Necessário login',
                             message: 'Faça login ou registe-se para prosseguir'
                         });
-                        alert_1.addButton({
+                        alert.addButton({
                             text: 'Login',
                             handler: function (data) {
                                 _this.navCtrl.push('LoginPage');
                             }
                         });
-                        alert_1.addButton({
+                        alert.addButton({
                             text: 'Registo',
                             handler: function (data) {
                                 _this.navCtrl.push('SignupPage');
                             }
                         });
                         _this.loading.dismiss();
-                        alert_1.present();
+                        alert.present();
                     }
                 });
             }
@@ -969,7 +966,7 @@ var MenuPage = (function () {
 }());
 __decorate([
     __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_9" /* ViewChild */])('scheduleList', { read: __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["q" /* List */] }),
-    __metadata("design:type", __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["q" /* List */])
+    __metadata("design:type", typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["q" /* List */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["q" /* List */]) === "function" && _a || Object)
 ], MenuPage.prototype, "scheduleList", void 0);
 MenuPage = __decorate([
     __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* IonicPage */])(),
@@ -977,21 +974,10 @@ MenuPage = __decorate([
         selector: 'page-menu',template:/*ion-inline-start:"C:\Users\someb\Documents\Sites\aiguaria-takeaway\src\pages\menu\menu.html"*/'<ion-header>\n\n	<ion-navbar no-border-bottom>\n\n		<button ion-button menuToggle>\n\n			<ion-icon name="menu"></ion-icon>\n\n		</button>\n\n\n\n		<ion-title [hidden]="true">Ementa</ion-title>\n\n\n\n		<ion-segment [(ngModel)]="segment">\n\n			<ion-segment-button value="daily">\n\n				Ementa Diária\n\n			</ion-segment-button>\n\n			<ion-segment-button value="fixed">\n\n				Ementa Fixa\n\n			</ion-segment-button>\n\n		</ion-segment>\n\n\n\n		<ion-buttons end>\n\n			<button ion-button icon-only (click)="presentFilter()">\n\n				<ion-icon name="options"></ion-icon>\n\n			</button>\n\n		<button ion-button icon-only (click)="cartSegment()">\n\n				<ion-icon name="basket"></ion-icon>\n\n				<ion-badge item-right>{{cart.totalQuantity}}</ion-badge>\n\n			</button>\n\n		</ion-buttons>\n\n	</ion-navbar>\n\n\n\n	<!--<ion-toolbar no-border-top>\n\n		<ion-searchbar color="primary"\n\n									 [(ngModel)]="queryText"\n\n									 (ionInput)="updateSchedule()"\n\n									 placeholder="Search">\n\n		</ion-searchbar>\n\n	</ion-toolbar>-->\n\n</ion-header>\n\n\n\n<ion-content>\n\n	<ion-refresher (ionRefresh)="doRefresh($event)">\n\n    	<ion-refresher-content></ion-refresher-content>\n\n  	</ion-refresher>\n\n	<div [ngSwitch]="segment">\n\n	 <ion-list *ngSwitchCase="\'fixed\'">\n\n		 <ion-item-group *ngFor="let category of fixedMenu" [hidden]="category.hide">\n\n			<ion-item-divider sticky>\n\n        		<ion-label>\n\n          		{{category.name}}\n\n        		</ion-label>\n\n      		</ion-item-divider>\n\n			<ion-item *ngFor="let product of category.items" [attr.track]="product.category | lowercase">\n\n				<h2>{{product.name}}</h2>\n\n				<p>{{product.description}}</p>\n\n				<button outline ion-button *ngFor="let measure of product.measures" (click)="addToCart(product, measure)">\n\n					<span style="margin-right: 10px">{{measure.name}}</span>\n\n					<span>{{measure.value}}€</span>\n\n					<span *ngIf="measure.quantity > 0" style="margin-left: 10px">{{measure.quantity}}</span>\n\n				</button>\n\n			</ion-item>\n\n		 </ion-item-group>\n\n	 </ion-list>\n\n	 <ion-list *ngSwitchCase="\'daily\'">\n\n		 <ion-item-group *ngFor="let category of dailyMenu" [hidden]="category.hide">\n\n			<ion-item-divider sticky>\n\n        		<ion-label>\n\n          		{{category.name}}\n\n        		</ion-label>\n\n      		</ion-item-divider>\n\n			<ion-item *ngFor="let product of category.items" [attr.track]="product.category | lowercase">\n\n				<h2>{{product.name}}</h2>\n\n				<p>{{product.description}}</p>\n\n				<button outline ion-button *ngFor="let measure of product.measures" (click)="addToCart(product, measure)">\n\n					<span style="margin-right: 10px">{{measure.name}}</span>\n\n					<span>{{measure.value}}€</span>\n\n					<span *ngIf="measure.quantity > 0" style="margin-left: 10px">{{measure.quantity}}</span>\n\n				</button>\n\n			</ion-item>\n\n		 </ion-item-group>\n\n	 </ion-list>\n\n	 <ion-list *ngSwitchCase="\'cart\'">\n\n		 <ion-item-sliding  *ngFor="let product of cart.items">\n\n			<ion-item [attr.track]="product.category | lowercase">\n\n			<h2>{{product.name}}</h2>\n\n			<p>{{product.description}}</p>\n\n			<p>{{product.measure_name}}</p>\n\n			<div class="item-note" item-right>\n\n				<ion-row align-items-center>\n\n					<ion-col text-right>\n\n						<div text-center style="min-width: 110px">\n\n							<ion-icon name="arrow-back" (click)="decrementQuantity(product)"></ion-icon>\n\n							<div style="font-size: 20px; display: inline-block; width: 25px">{{product.quantity}}</div>\n\n							<ion-icon name="arrow-forward"  (click)="incrementQuantity(product)"></ion-icon>\n\n						</div>\n\n					</ion-col>\n\n					<ion-col text-right [hidden]="platform != \'desktop\'" style="max-width: 80px">\n\n						<button color="danger" outline ion-button icon-only (click)="removeFromCart(product)">\n\n							<ion-icon name="trash"></ion-icon>\n\n						</button>\n\n					</ion-col>\n\n				</ion-row>\n\n			</div>\n\n			</ion-item>\n\n			<ion-item-options side="right" [hidden]="platform == \'desktop\'">\n\n      			<button color="danger" ion-button (click)="removeFromCart(product)">\n\n					<ion-icon name="trash"></ion-icon>\n\n					Remover\n\n				</button>\n\n    		</ion-item-options>\n\n		</ion-item-sliding>\n\n	 </ion-list>\n\n	</div>\n\n</ion-content>\n\n\n\n<ion-footer no-border>\n\n	<ion-toolbar>\n\n		<ion-title>Total: {{cart.totalPrice}}€</ion-title>\n\n		<button ion-button color="light" (click)="cleanCart()">\n\n			Esvaziar\n\n		</button>\n\n		<button ion-button color="primary" (click)="goToCheckoutPage()" [disabled]="cart.totalPrice == 0">\n\n			Checkout\n\n		</button>\n\n	</ion-toolbar>\n\n</ion-footer>'/*ion-inline-end:"C:\Users\someb\Documents\Sites\aiguaria-takeaway\src\pages\menu\menu.html"*/,
         providers: [__WEBPACK_IMPORTED_MODULE_3__providers_menu_service__["a" /* ProductService */], __WEBPACK_IMPORTED_MODULE_6__providers_cart_service__["b" /* CartService */], __WEBPACK_IMPORTED_MODULE_7__providers_order_service__["a" /* OrderService */], __WEBPACK_IMPORTED_MODULE_5__providers_settings_service__["a" /* SettingsService */]]
     }),
-    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* AlertController */],
-        __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["l" /* App */],
-        __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["m" /* LoadingController */],
-        __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["n" /* ModalController */],
-        __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavController */],
-        __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["o" /* ToastController */],
-        __WEBPACK_IMPORTED_MODULE_3__providers_menu_service__["a" /* ProductService */],
-        __WEBPACK_IMPORTED_MODULE_6__providers_cart_service__["b" /* CartService */],
-        __WEBPACK_IMPORTED_MODULE_7__providers_order_service__["a" /* OrderService */],
-        __WEBPACK_IMPORTED_MODULE_4__providers_user_service__["a" /* UserService */],
-        __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["r" /* Platform */],
-        __WEBPACK_IMPORTED_MODULE_2__ionic_storage__["b" /* Storage */],
-        __WEBPACK_IMPORTED_MODULE_5__providers_settings_service__["a" /* SettingsService */]])
+    __metadata("design:paramtypes", [typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* AlertController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* AlertController */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["l" /* App */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["l" /* App */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["m" /* LoadingController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["m" /* LoadingController */]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["n" /* ModalController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["n" /* ModalController */]) === "function" && _e || Object, typeof (_f = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavController */]) === "function" && _f || Object, typeof (_g = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["o" /* ToastController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["o" /* ToastController */]) === "function" && _g || Object, typeof (_h = typeof __WEBPACK_IMPORTED_MODULE_3__providers_menu_service__["a" /* ProductService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__providers_menu_service__["a" /* ProductService */]) === "function" && _h || Object, typeof (_j = typeof __WEBPACK_IMPORTED_MODULE_6__providers_cart_service__["b" /* CartService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_6__providers_cart_service__["b" /* CartService */]) === "function" && _j || Object, typeof (_k = typeof __WEBPACK_IMPORTED_MODULE_7__providers_order_service__["a" /* OrderService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_7__providers_order_service__["a" /* OrderService */]) === "function" && _k || Object, typeof (_l = typeof __WEBPACK_IMPORTED_MODULE_4__providers_user_service__["a" /* UserService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4__providers_user_service__["a" /* UserService */]) === "function" && _l || Object, typeof (_m = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["r" /* Platform */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["r" /* Platform */]) === "function" && _m || Object, typeof (_o = typeof __WEBPACK_IMPORTED_MODULE_2__ionic_storage__["b" /* Storage */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__ionic_storage__["b" /* Storage */]) === "function" && _o || Object, typeof (_p = typeof __WEBPACK_IMPORTED_MODULE_5__providers_settings_service__["a" /* SettingsService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_5__providers_settings_service__["a" /* SettingsService */]) === "function" && _p || Object])
 ], MenuPage);
 
+var _a, _b, _c, _d, _e, _f, _g, _h, _j, _k, _l, _m, _o, _p;
 //# sourceMappingURL=menu.js.map
 
 /***/ })

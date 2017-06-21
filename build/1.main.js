@@ -4578,7 +4578,7 @@ var SettingsService = (function () {
         this.userService = userService;
         this.API_URL = 'http://172.24.62.104/link.eddmi.com/index.php/takeaway/';
         this.ENTITY_ID = 2;
-        console.log('Hello SettingsService Provider');
+        // console.log('Hello SettingsService Provider');
     }
     SettingsService.prototype.get = function () {
         var _this = this;
@@ -4593,7 +4593,7 @@ var SettingsService = (function () {
                 .map(function (res) { return res.json(); })
                 .subscribe(function (data) {
                 _this.about = data.data.settings;
-                console.log(_this.about);
+                // console.log(this.about);
                 resolve(_this.about);
             }, function (error) {
                 reject(error);
@@ -4731,7 +4731,7 @@ var SettingsService = (function () {
                                 response.status = "success";
                                 response.address = address;
                                 response.locality = locality;
-                                console.log(response.distance, response.address);
+                                // console.log(response.distance, response.address);
                                 resolve(response);
                             }
                             else {
@@ -4753,9 +4753,10 @@ var SettingsService = (function () {
 }());
 SettingsService = __decorate([
     __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["c" /* Injectable */])(),
-    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__angular_http__["d" /* Http */], __WEBPACK_IMPORTED_MODULE_2__user_service__["a" /* UserService */]])
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__angular_http__["d" /* Http */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_http__["d" /* Http */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_2__user_service__["a" /* UserService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__user_service__["a" /* UserService */]) === "function" && _b || Object])
 ], SettingsService);
 
+var _a, _b;
 //# sourceMappingURL=settings-service.js.map
 
 /***/ }),

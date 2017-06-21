@@ -96,7 +96,7 @@ var SettingsService = (function () {
         this.userService = userService;
         this.API_URL = 'http://172.24.62.104/link.eddmi.com/index.php/takeaway/';
         this.ENTITY_ID = 2;
-        console.log('Hello SettingsService Provider');
+        // console.log('Hello SettingsService Provider');
     }
     SettingsService.prototype.get = function () {
         var _this = this;
@@ -111,7 +111,7 @@ var SettingsService = (function () {
                 .map(function (res) { return res.json(); })
                 .subscribe(function (data) {
                 _this.about = data.data.settings;
-                console.log(_this.about);
+                // console.log(this.about);
                 resolve(_this.about);
             }, function (error) {
                 reject(error);
@@ -249,7 +249,7 @@ var SettingsService = (function () {
                                 response.status = "success";
                                 response.address = address;
                                 response.locality = locality;
-                                console.log(response.distance, response.address);
+                                // console.log(response.distance, response.address);
                                 resolve(response);
                             }
                             else {
@@ -271,9 +271,10 @@ var SettingsService = (function () {
 }());
 SettingsService = __decorate([
     __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["c" /* Injectable */])(),
-    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__angular_http__["d" /* Http */], __WEBPACK_IMPORTED_MODULE_2__user_service__["a" /* UserService */]])
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__angular_http__["d" /* Http */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_http__["d" /* Http */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_2__user_service__["a" /* UserService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__user_service__["a" /* UserService */]) === "function" && _b || Object])
 ], SettingsService);
 
+var _a, _b;
 //# sourceMappingURL=settings-service.js.map
 
 /***/ }),
@@ -322,10 +323,10 @@ var AccountUpdatePage = (function () {
             message: ""
         };
         this.user = this.navParams.data.user;
-        console.log(this.user);
+        // console.log(this.user);
     }
     AccountUpdatePage.prototype.ionViewDidLoad = function () {
-        console.log('ionViewDidLoad AccountUpdatePage');
+        // console.log('ionViewDidLoad AccountUpdatePage');
     };
     AccountUpdatePage.prototype.dismiss = function (data) {
         // using the injected ViewController this page
@@ -396,9 +397,10 @@ AccountUpdatePage = __decorate([
         selector: 'page-account-update',template:/*ion-inline-start:"C:\Users\someb\Documents\Sites\aiguaria-takeaway\src\pages\account-update\account-update.html"*/'<ion-header>\n	<ion-toolbar>\n		<ion-buttons start>\n			<button ion-button (click)="dismiss()">Cancelar</button>\n		</ion-buttons>\n\n		<ion-title>\n			Alterar dados\n		</ion-title>\n\n		<!--<ion-buttons end>\n			<button ion-button (click)="applyFilters()" strong>Ok</button>\n		</ion-buttons>-->\n	</ion-toolbar>\n</ion-header>\n\n\n<ion-content padding>\n\n	<form #userForm="ngForm" novalidate>\n		<ion-list>\n			<ion-item>\n				<ion-label stacked color="primary">Nome</ion-label>\n				<ion-input [(ngModel)]="user.name" name="name" type="text" #name="ngModel" required>\n				</ion-input>\n			</ion-item>\n			<ion-item>\n				<ion-label stacked color="primary">Telemóvel</ion-label>\n				<ion-input [(ngModel)]="user.mobile" [minlength]="9" name="mobile" type="tel" maxlength="9" #mobile="ngModel" required>\n				</ion-input>\n			</ion-item>\n			<ion-item>\n				<ion-label stacked color="primary">Morada</ion-label>\n				<ion-input [(ngModel)]="user.address" name="address" type="text" #address="ngModel" required>\n				</ion-input>\n			</ion-item>\n			<ion-item [ngClass]="{\'invalid\': !postalCodeValidation.valid}">\n				<ion-label stacked color="primary">Código Postal</ion-label>\n				<ion-input [(ngModel)]="user.postal_code" [minlength]="8" [maxlength]="8" (ngModelChange)="checkLocation(user.postal_code, postalCode)" name="postal_code"  pattern="^\\d{4}-\\d{3}$" max="8" type="text" #postalCode="ngModel" required>\n				</ion-input>\n			</ion-item>\n			<ion-spinner [hidden]="!postalCodeValidation.spinner" margin-left></ion-spinner>\n			<p padding-left [hidden]="!postalCodeValidation.message">\n				<ion-icon name=\'alert\' [hidden]="postalCodeValidation.valid"></ion-icon> \n				{{postalCodeValidation.message}}\n			</p>\n		</ion-list>\n\n		<div padding>\n			<button [disabled]="!userForm.valid || !postalCodeValidation.valid" ion-button (click)="onUpdate(userForm)" type="submit" block>Editar</button>\n		</div>\n	</form>\n\n</ion-content>\n'/*ion-inline-end:"C:\Users\someb\Documents\Sites\aiguaria-takeaway\src\pages\account-update\account-update.html"*/,
         providers: [__WEBPACK_IMPORTED_MODULE_2__providers_settings_service__["a" /* SettingsService */], __WEBPACK_IMPORTED_MODULE_3__providers_user_service__["a" /* UserService */]]
     }),
-    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* AlertController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["k" /* NavParams */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["p" /* ViewController */], __WEBPACK_IMPORTED_MODULE_3__providers_user_service__["a" /* UserService */], __WEBPACK_IMPORTED_MODULE_2__providers_settings_service__["a" /* SettingsService */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["m" /* LoadingController */]])
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* AlertController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* AlertController */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavController */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["k" /* NavParams */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["k" /* NavParams */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["p" /* ViewController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["p" /* ViewController */]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_3__providers_user_service__["a" /* UserService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__providers_user_service__["a" /* UserService */]) === "function" && _e || Object, typeof (_f = typeof __WEBPACK_IMPORTED_MODULE_2__providers_settings_service__["a" /* SettingsService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__providers_settings_service__["a" /* SettingsService */]) === "function" && _f || Object, typeof (_g = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["m" /* LoadingController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["m" /* LoadingController */]) === "function" && _g || Object])
 ], AccountUpdatePage);
 
+var _a, _b, _c, _d, _e, _f, _g;
 //# sourceMappingURL=account-update.js.map
 
 /***/ })

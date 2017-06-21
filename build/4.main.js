@@ -119,7 +119,7 @@ var CartService = (function () {
     CartService.prototype.addItem = function (item, measure) {
         var _this = this;
         return this.get().then(function (cart) {
-            console.log(cart);
+            // console.log(cart);
             var auxItem = cart.items.find(function (p) { return p.id === item.id && p.measure_name === measure.name; });
             if (!auxItem) {
                 var newItem = item;
@@ -142,7 +142,7 @@ var CartService = (function () {
     CartService.prototype.incrementQuantity = function (item) {
         var _this = this;
         return this.get().then(function (cart) {
-            console.log(cart);
+            // console.log(cart);
             var auxItem = cart.items.find(function (p) { return p.id === item.id && p.measure_name === item.measure_name; });
             var index = cart.items.indexOf(auxItem);
             cart.items[index].quantity++;
@@ -216,11 +216,10 @@ var CartService = (function () {
 }());
 CartService = __decorate([
     __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["c" /* Injectable */])(),
-    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_2_ionic_angular__["d" /* Events */],
-        __WEBPACK_IMPORTED_MODULE_3__ionic_storage__["b" /* Storage */],
-        __WEBPACK_IMPORTED_MODULE_1__angular_http__["d" /* Http */]])
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["d" /* Events */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["d" /* Events */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_3__ionic_storage__["b" /* Storage */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__ionic_storage__["b" /* Storage */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_1__angular_http__["d" /* Http */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_http__["d" /* Http */]) === "function" && _c || Object])
 ], CartService);
 
+var _a, _b, _c;
 //# sourceMappingURL=cart-service.js.map
 
 /***/ }),
@@ -256,7 +255,7 @@ var OrderService = (function () {
         this.http = http;
         this.userService = userService;
         this.API_URL = 'http://172.24.62.104/link.eddmi.com/index.php/takeaway/';
-        console.log('Hello OrderService Provider');
+        // console.log('Hello OrderService Provider');
     }
     OrderService.prototype.all = function () {
         var _this = this;
@@ -286,10 +285,10 @@ var OrderService = (function () {
                 _this.http.post(url, order, _options)
                     .map(function (res) { return res.json(); })
                     .subscribe(function (data) {
-                    console.log(data);
+                    // console.log(data);
                     resolve(data);
                 }, function (error) {
-                    console.log(error);
+                    // console.log(error);
                     reject(error);
                 });
             });
@@ -300,9 +299,10 @@ var OrderService = (function () {
 }());
 OrderService = __decorate([
     __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["c" /* Injectable */])(),
-    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__angular_http__["d" /* Http */], __WEBPACK_IMPORTED_MODULE_2__user_service__["a" /* UserService */]])
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__angular_http__["d" /* Http */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_http__["d" /* Http */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_2__user_service__["a" /* UserService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__user_service__["a" /* UserService */]) === "function" && _b || Object])
 ], OrderService);
 
+var _a, _b;
 //# sourceMappingURL=order-service.js.map
 
 /***/ }),
@@ -336,7 +336,7 @@ var ProductService = (function () {
         this.http = http;
         this.API_URL = 'http://172.24.62.104/link.eddmi.com/index.php/takeaway/';
         this.ENTITY_ID = 2;
-        console.log('Hello ProductService Provider');
+        // console.log('Hello ProductService Provider');
     }
     ProductService.prototype.getFixed = function (local) {
         var _this = this;
@@ -350,7 +350,7 @@ var ProductService = (function () {
                 _this.fixedMenu = _this.organizeByCategory(data.data.products);
                 resolve(_this.fixedMenu);
             }, function (error) {
-                console.log(error);
+                // console.log(error);
                 reject(error);
             });
         });
@@ -367,7 +367,7 @@ var ProductService = (function () {
                 _this.dailyMenu = _this.organizeByCategory(data.data.products);
                 resolve(_this.dailyMenu);
             }, function (error) {
-                console.log(error);
+                // console.log(error);
                 reject(error);
             });
         });
@@ -391,9 +391,10 @@ var ProductService = (function () {
 }());
 ProductService = __decorate([
     __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["c" /* Injectable */])(),
-    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__angular_http__["d" /* Http */]])
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__angular_http__["d" /* Http */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_http__["d" /* Http */]) === "function" && _a || Object])
 ], ProductService);
 
+var _a;
 //# sourceMappingURL=menu-service.js.map
 
 /***/ }),
