@@ -88,13 +88,9 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 var CardPage = (function () {
-    function CardPage(alertCtrl, app, loadingCtrl, modalCtrl, navCtrl, toastCtrl, cardService) {
+    function CardPage(alertCtrl, app, cardService) {
         this.alertCtrl = alertCtrl;
         this.app = app;
-        this.loadingCtrl = loadingCtrl;
-        this.modalCtrl = modalCtrl;
-        this.navCtrl = navCtrl;
-        this.toastCtrl = toastCtrl;
         this.cardService = cardService;
         // the list is a child of the menu page
         // @ViewChild('scheduleList') gets a reference to the list
@@ -123,10 +119,11 @@ CardPage = __decorate([
         selector: 'card',template:/*ion-inline-start:"C:\Users\someb\Documents\Sites\aiguaria-takeaway\src\pages\card\card.html"*/'<ion-header>\n\n\n\n	<ion-navbar>\n\n		<button ion-button menuToggle>\n\n      <ion-icon name="menu"></ion-icon>\n\n    </button>\n\n		<ion-title>Cartão</ion-title>\n\n	</ion-navbar>\n\n\n\n</ion-header>\n\n\n\n<ion-content>\n\n	<div padding>\n\n		<qr-code *ngIf="card" [value]="card.value" [size]="200"></qr-code>\n\n	</div>\n\n</ion-content>"'/*ion-inline-end:"C:\Users\someb\Documents\Sites\aiguaria-takeaway\src\pages\card\card.html"*/,
         providers: [__WEBPACK_IMPORTED_MODULE_2__providers_card_service__["a" /* CardService */]]
     }),
-    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* AlertController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* AlertController */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["l" /* App */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["l" /* App */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["m" /* LoadingController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["m" /* LoadingController */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["n" /* ModalController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["n" /* ModalController */]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavController */]) === "function" && _e || Object, typeof (_f = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["o" /* ToastController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["o" /* ToastController */]) === "function" && _f || Object, typeof (_g = typeof __WEBPACK_IMPORTED_MODULE_2__providers_card_service__["a" /* CardService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__providers_card_service__["a" /* CardService */]) === "function" && _g || Object])
+    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* AlertController */],
+        __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["l" /* App */],
+        __WEBPACK_IMPORTED_MODULE_2__providers_card_service__["a" /* CardService */]])
 ], CardPage);
 
-var _a, _b, _c, _d, _e, _f, _g;
 //# sourceMappingURL=card.js.map
 
 /***/ }),
@@ -190,10 +187,9 @@ var CardService = (function () {
 }());
 CardService = __decorate([
     __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["c" /* Injectable */])(),
-    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__angular_http__["d" /* Http */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_http__["d" /* Http */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_2__user_service__["a" /* UserService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__user_service__["a" /* UserService */]) === "function" && _b || Object])
+    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__angular_http__["d" /* Http */], __WEBPACK_IMPORTED_MODULE_2__user_service__["a" /* UserService */]])
 ], CardService);
 
-var _a, _b;
 //# sourceMappingURL=card-service.js.map
 
 /***/ }),
