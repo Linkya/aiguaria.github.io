@@ -1,2 +1,2 @@
-# aiguaria.linkya.xyz
-aiguaria.linkya.pt
+# A Iguaria Takeaway
+[https://aiguaria.linkya.xyz](https://aiguaria.linkya.xyz)
