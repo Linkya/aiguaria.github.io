@@ -115,7 +115,7 @@ var CartService = (function () {
         this.http = http;
         // API_URL = 'http://172.24.62.104/link.eddmi.com/index.php/takeaway/';
         this.API_URL = 'https://link.eddmi.com/takeaway/';
-        this.ENTITY_ID = 227;
+        this.ENTITY_ID = 277;
     }
     CartService.prototype.addItem = function (item, measure) {
         var _this = this;
@@ -338,7 +338,7 @@ var ProductService = (function () {
         this.http = http;
         // API_URL = 'http://172.24.62.104/link.eddmi.com/index.php/takeaway/';
         this.API_URL = 'https://link.eddmi.com/takeaway/';
-        this.ENTITY_ID = 227;
+        this.ENTITY_ID = 277;
         // console.log('Hello ProductService Provider');
     }
     ProductService.prototype.getFixed = function (local) {

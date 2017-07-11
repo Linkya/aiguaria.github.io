@@ -96,7 +96,7 @@ var SettingsService = (function () {
         this.userService = userService;
         // API_URL = 'http://172.24.62.104/link.eddmi.com/index.php/takeaway/';
         this.API_URL = 'https://link.eddmi.com/takeaway/';
-        this.ENTITY_ID = 227;
+        this.ENTITY_ID = 277;
         // console.log('Hello SettingsService Provider');
     }
     SettingsService.prototype.get = function () {
@@ -315,20 +315,23 @@ var MapPage = (function () {
             _this.settingsService.getPath()
                 .then(function (data) {
                 _this.path = data;
-                var decodedPath = google.maps.geometry.encoding.decodePath(_this.path);
-                var polygon = new google.maps.Polygon({
-                    paths: decodedPath,
-                    strokeOpacity: 0.8,
-                    strokeWeight: 0.1,
-                    fillOpacity: 0.35
-                });
+                var polygon = null;
+                if (_this.path) {
+                    var decodedPath = google.maps.geometry.encoding.decodePath(_this.path);
+                    polygon = new google.maps.Polygon({
+                        paths: decodedPath,
+                        strokeOpacity: 0.8,
+                        strokeWeight: 0.1,
+                        fillOpacity: 0.35
+                    });
+                }
                 // this.confData.getMap().subscribe((mapData: any) => {
                 var mapEle = _this.mapElement.nativeElement;
                 var map = new google.maps.Map(mapEle, {
                     center: {
-                        "name": "Quero Takeaway",
-                        "lat": 41.3354534,
-                        "lng": -8.5601993
+                        "name": "A Iguaria",
+                        "lat": 41.1747295,
+                        "lng": -8.5842759
                     },
                     zoom: 11
                 });
@@ -336,11 +339,11 @@ var MapPage = (function () {
                 // 	let infoWindow = new google.maps.InfoWindow({
                 // 		content: `<h5>${markerData.name}</h5>`
                 // 	});
-                // 	let marker = new google.maps.Marker({
-                // 		position: markerData,
-                // 		map: map,
-                // 		title: markerData.name
-                // 	});
+                // // 	let marker = new google.maps.Marker({
+                // // 		position: markerData,
+                // // 		map: map,
+                // // 		title: markerData.name
+                // // 	});
                 // 	marker.addListener('click', () => {
                 // 		infoWindow.open(map, marker);
                 // 	});
@@ -348,7 +351,9 @@ var MapPage = (function () {
                 google.maps.event.addListenerOnce(map, 'idle', function () {
                     mapEle.classList.add('show-map');
                 });
-                polygon.setMap(map);
+                if (polygon) {
+                    polygon.setMap(map);
+                }
                 _this.loading.dismiss();
                 // });
             }, function (error) {
