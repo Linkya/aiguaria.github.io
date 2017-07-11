@@ -179,7 +179,7 @@ var CartService = (function () {
     CartService.prototype.paymentMethods = function () {
         var _this = this;
         return new Promise(function (resolve) {
-            var url = _this.API_URL + '/tkpaymentMethod/all';
+            var url = _this.API_URL + '/payment/all';
             var _headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["b" /* Headers */]({ 'Authorization': _this.ENTITY_ID });
             var _options = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["c" /* RequestOptions */]({ headers: _headers });
             _this.http.get(url, _options)

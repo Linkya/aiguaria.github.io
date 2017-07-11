@@ -106,7 +106,7 @@ var SettingsService = (function () {
         return new Promise(function (resolve, reject) {
             var _headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["b" /* Headers */]({ 'Authorization': _this.ENTITY_ID });
             var _options = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["c" /* RequestOptions */]({ headers: _headers });
-            var url = _this.API_URL + "tkSettings/one";
+            var url = _this.API_URL + "settings/one";
             _this.http.get(url, _options)
                 .map(function (res) { return res.json(); })
                 .subscribe(function (data) {
@@ -126,7 +126,7 @@ var SettingsService = (function () {
         return new Promise(function (resolve, reject) {
             var _headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["b" /* Headers */]({ 'Authorization': _this.ENTITY_ID });
             var _options = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["c" /* RequestOptions */]({ headers: _headers });
-            var url = _this.API_URL + "tkSettings/path/";
+            var url = _this.API_URL + "settings/path/";
             _this.http.get(url, _options)
                 .map(function (res) { return res.json(); })
                 .subscribe(function (data) {
@@ -146,7 +146,7 @@ var SettingsService = (function () {
             _this.userService.getToken().then(function (data) {
                 var _headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["b" /* Headers */]({ 'Authorization': _this.ENTITY_ID });
                 var _options = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["c" /* RequestOptions */]({ headers: _headers });
-                var url = _this.API_URL + "tkSettings/fixedFee/";
+                var url = _this.API_URL + "settings/fixedFee/";
                 _this.http.get(url, _options)
                     .map(function (res) { return res.json(); })
                     .subscribe(function (data) {
@@ -167,7 +167,7 @@ var SettingsService = (function () {
             _this.userService.getToken().then(function (data) {
                 var _headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["b" /* Headers */]({ 'Authorization': _this.ENTITY_ID });
                 var _options = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["c" /* RequestOptions */]({ headers: _headers });
-                var url = _this.API_URL + "tkSettings/fees/";
+                var url = _this.API_URL + "settings/fees/";
                 _this.http.get(url, _options)
                     .map(function (res) { return res.json(); })
                     .subscribe(function (data) {
@@ -188,7 +188,7 @@ var SettingsService = (function () {
             _this.userService.getToken().then(function (data) {
                 var _headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["b" /* Headers */]({ 'Authorization': _this.ENTITY_ID });
                 var _options = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["c" /* RequestOptions */]({ headers: _headers });
-                var url = _this.API_URL + "tkSettings/openingTimes/";
+                var url = _this.API_URL + "settings/schedule/";
                 _this.http.get(url, _options)
                     .map(function (res) { return res.json(); })
                     .subscribe(function (data) {

@@ -106,7 +106,7 @@ var SettingsService = (function () {
         return new Promise(function (resolve, reject) {
             var _headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["b" /* Headers */]({ 'Authorization': _this.ENTITY_ID });
             var _options = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["c" /* RequestOptions */]({ headers: _headers });
-            var url = _this.API_URL + "tkSettings/one";
+            var url = _this.API_URL + "settings/one";
             _this.http.get(url, _options)
                 .map(function (res) { return res.json(); })
                 .subscribe(function (data) {
@@ -126,7 +126,7 @@ var SettingsService = (function () {
         return new Promise(function (resolve, reject) {
             var _headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["b" /* Headers */]({ 'Authorization': _this.ENTITY_ID });
             var _options = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["c" /* RequestOptions */]({ headers: _headers });
-            var url = _this.API_URL + "tkSettings/path/";
+            var url = _this.API_URL + "settings/path/";
             _this.http.get(url, _options)
                 .map(function (res) { return res.json(); })
                 .subscribe(function (data) {
@@ -146,7 +146,7 @@ var SettingsService = (function () {
             _this.userService.getToken().then(function (data) {
                 var _headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["b" /* Headers */]({ 'Authorization': _this.ENTITY_ID });
                 var _options = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["c" /* RequestOptions */]({ headers: _headers });
-                var url = _this.API_URL + "tkSettings/fixedFee/";
+                var url = _this.API_URL + "settings/fixedFee/";
                 _this.http.get(url, _options)
                     .map(function (res) { return res.json(); })
                     .subscribe(function (data) {
@@ -167,7 +167,7 @@ var SettingsService = (function () {
             _this.userService.getToken().then(function (data) {
                 var _headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["b" /* Headers */]({ 'Authorization': _this.ENTITY_ID });
                 var _options = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["c" /* RequestOptions */]({ headers: _headers });
-                var url = _this.API_URL + "tkSettings/fees/";
+                var url = _this.API_URL + "settings/fees/";
                 _this.http.get(url, _options)
                     .map(function (res) { return res.json(); })
                     .subscribe(function (data) {
@@ -188,7 +188,7 @@ var SettingsService = (function () {
             _this.userService.getToken().then(function (data) {
                 var _headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["b" /* Headers */]({ 'Authorization': _this.ENTITY_ID });
                 var _options = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["c" /* RequestOptions */]({ headers: _headers });
-                var url = _this.API_URL + "tkSettings/openingTimes/";
+                var url = _this.API_URL + "settings/schedule/";
                 _this.http.get(url, _options)
                     .map(function (res) { return res.json(); })
                     .subscribe(function (data) {
@@ -416,7 +416,7 @@ var CartService = (function () {
     CartService.prototype.paymentMethods = function () {
         var _this = this;
         return new Promise(function (resolve) {
-            var url = _this.API_URL + '/tkpaymentMethod/all';
+            var url = _this.API_URL + '/payment/all';
             var _headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["b" /* Headers */]({ 'Authorization': _this.ENTITY_ID });
             var _options = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["c" /* RequestOptions */]({ headers: _headers });
             _this.http.get(url, _options)
@@ -478,7 +478,7 @@ var OrderService = (function () {
             _this.userService.getToken().then(function (data) {
                 var _headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["b" /* Headers */]({ 'Authorization': data });
                 var _options = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["c" /* RequestOptions */]({ headers: _headers });
-                var url = _this.API_URL + '/tkorder/all/';
+                var url = _this.API_URL + 'order/all/';
                 _this.http.get(url, _options)
                     .map(function (res) { return res.json(); })
                     .subscribe(function (data) {
@@ -496,7 +496,7 @@ var OrderService = (function () {
             _this.userService.getToken().then(function (data) {
                 var _headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["b" /* Headers */]({ 'Authorization': data });
                 var _options = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["c" /* RequestOptions */]({ headers: _headers });
-                var url = _this.API_URL + 'tkorder/new';
+                var url = _this.API_URL + 'order/new';
                 _this.http.post(url, order, _options)
                     .map(function (res) { return res.json(); })
                     .subscribe(function (data) {
@@ -555,7 +555,7 @@ var ProductService = (function () {
     ProductService.prototype.getFixed = function (local) {
         var _this = this;
         return new Promise(function (resolve, reject) {
-            var url = _this.API_URL + '/tkproduct/fixed?local=' + local;
+            var url = _this.API_URL + 'product/fixed?local=' + local;
             var _headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["b" /* Headers */]({ 'Authorization': _this.ENTITY_ID });
             var _options = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["c" /* RequestOptions */]({ headers: _headers });
             _this.http.get(url, _options)
@@ -572,7 +572,7 @@ var ProductService = (function () {
     ProductService.prototype.getDaily = function (local) {
         var _this = this;
         return new Promise(function (resolve, reject) {
-            var url = _this.API_URL + '/tkproduct/daily?local=' + local;
+            var url = _this.API_URL + 'product/daily?local=' + local;
             var _headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["b" /* Headers */]({ 'Authorization': _this.ENTITY_ID });
             var _options = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["c" /* RequestOptions */]({ headers: _headers });
             _this.http.get(url, _options)
@@ -925,16 +925,6 @@ var MenuPage = (function () {
             }
         });
     };
-    MenuPage.prototype.openSocial = function (network, fab) {
-        var loading = this.loadingCtrl.create({
-            content: "Posting to " + network,
-            duration: (Math.random() * 1000) + 500
-        });
-        loading.onWillDismiss(function () {
-            fab.close();
-        });
-        loading.present();
-    };
     MenuPage.prototype.doRefresh = function (refresher) {
         var _this = this;
         this.productService.getFixed(this.local)
@@ -945,11 +935,11 @@ var MenuPage = (function () {
                 _this.dailyMenu = _this.addMeasures(data);
                 refresher.complete();
             }, function (error) {
-                _this.alert("Erro", "Verifique a sua ligação à rende e tente novamente.");
+                _this.alert("Erro", "Verifique a sua ligação à rede e tente novamente.");
                 refresher.complete();
             });
         }, function (error) {
-            _this.alert("Erro", "Verifique a sua ligação à rende e tente novamente.");
+            _this.alert("Erro", "Verifique a sua ligação à rede e tente novamente.");
             refresher.complete();
         });
     };

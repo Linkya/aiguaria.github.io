@@ -202,7 +202,7 @@ var CartService = (function () {
     CartService.prototype.paymentMethods = function () {
         var _this = this;
         return new Promise(function (resolve) {
-            var url = _this.API_URL + '/tkpaymentMethod/all';
+            var url = _this.API_URL + '/payment/all';
             var _headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["b" /* Headers */]({ 'Authorization': _this.ENTITY_ID });
             var _options = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["c" /* RequestOptions */]({ headers: _headers });
             _this.http.get(url, _options)
@@ -264,7 +264,7 @@ var OrderService = (function () {
             _this.userService.getToken().then(function (data) {
                 var _headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["b" /* Headers */]({ 'Authorization': data });
                 var _options = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["c" /* RequestOptions */]({ headers: _headers });
-                var url = _this.API_URL + '/tkorder/all/';
+                var url = _this.API_URL + 'order/all/';
                 _this.http.get(url, _options)
                     .map(function (res) { return res.json(); })
                     .subscribe(function (data) {
@@ -282,7 +282,7 @@ var OrderService = (function () {
             _this.userService.getToken().then(function (data) {
                 var _headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["b" /* Headers */]({ 'Authorization': data });
                 var _options = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["c" /* RequestOptions */]({ headers: _headers });
-                var url = _this.API_URL + 'tkorder/new';
+                var url = _this.API_URL + 'order/new';
                 _this.http.post(url, order, _options)
                     .map(function (res) { return res.json(); })
                     .subscribe(function (data) {
@@ -341,7 +341,7 @@ var ProductService = (function () {
     ProductService.prototype.getFixed = function (local) {
         var _this = this;
         return new Promise(function (resolve, reject) {
-            var url = _this.API_URL + '/tkproduct/fixed?local=' + local;
+            var url = _this.API_URL + 'product/fixed?local=' + local;
             var _headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["b" /* Headers */]({ 'Authorization': _this.ENTITY_ID });
             var _options = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["c" /* RequestOptions */]({ headers: _headers });
             _this.http.get(url, _options)
@@ -358,7 +358,7 @@ var ProductService = (function () {
     ProductService.prototype.getDaily = function (local) {
         var _this = this;
         return new Promise(function (resolve, reject) {
-            var url = _this.API_URL + '/tkproduct/daily?local=' + local;
+            var url = _this.API_URL + 'product/daily?local=' + local;
             var _headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["b" /* Headers */]({ 'Authorization': _this.ENTITY_ID });
             var _options = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["c" /* RequestOptions */]({ headers: _headers });
             _this.http.get(url, _options)
