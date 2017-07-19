@@ -1,14 +1,14 @@
 webpackJsonp([11],{
 
-/***/ 274:
+/***/ 278:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(46);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__menu_filter__ = __webpack_require__(414);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "MenuFilterPageModule", function() { return MenuFilterPageModule; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__signup__ = __webpack_require__(419);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SignupPageModule", function() { return SignupPageModule; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -18,36 +18,37 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 
 
 
-var MenuFilterPageModule = (function () {
-    function MenuFilterPageModule() {
+var SignupPageModule = (function () {
+    function SignupPageModule() {
     }
-    return MenuFilterPageModule;
+    return SignupPageModule;
 }());
-MenuFilterPageModule = __decorate([
+SignupPageModule = __decorate([
     __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["a" /* NgModule */])({
         declarations: [
-            __WEBPACK_IMPORTED_MODULE_2__menu_filter__["a" /* MenuFilterPage */],
+            __WEBPACK_IMPORTED_MODULE_2__signup__["a" /* SignupPage */],
         ],
         imports: [
-            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* IonicPageModule */].forChild(__WEBPACK_IMPORTED_MODULE_2__menu_filter__["a" /* MenuFilterPage */]),
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* IonicPageModule */].forChild(__WEBPACK_IMPORTED_MODULE_2__signup__["a" /* SignupPage */]),
         ],
         exports: [
-            __WEBPACK_IMPORTED_MODULE_2__menu_filter__["a" /* MenuFilterPage */]
+            __WEBPACK_IMPORTED_MODULE_2__signup__["a" /* SignupPage */]
         ]
     })
-], MenuFilterPageModule);
+], SignupPageModule);
 
-//# sourceMappingURL=menu-filter.module.js.map
+//# sourceMappingURL=signup.module.js.map
 
 /***/ }),
 
-/***/ 414:
+/***/ 419:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(46);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return MenuFilterPage; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_user_service__ = __webpack_require__(100);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return SignupPage; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -59,50 +60,51 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 
 
-var MenuFilterPage = (function () {
-    function MenuFilterPage(navParams, viewCtrl) {
-        var _this = this;
-        this.navParams = navParams;
-        this.viewCtrl = viewCtrl;
-        this.categories = [];
-        // passed in array of category names that should be excluded (unchecked)
-        var excludedCategoryNames = this.navParams.data.excludeCategories;
-        var fixedMenu = this.navParams.data.fixedMenu;
-        fixedMenu.forEach(function (category) {
-            _this.categories.push({
-                name: category.name,
-                isChecked: (excludedCategoryNames.indexOf(category.name) === -1)
-            });
-        });
+
+var SignupPage = (function () {
+    function SignupPage(navCtrl, UserService, alertCtrl) {
+        this.navCtrl = navCtrl;
+        this.UserService = UserService;
+        this.alertCtrl = alertCtrl;
+        this.signup = {};
+        this.submitted = false;
     }
-    MenuFilterPage.prototype.resetFilters = function () {
-        // reset all of the toggles to be checked
-        this.categories.forEach(function (category) {
-            category.isChecked = true;
+    SignupPage.prototype.onSignup = function (form) {
+        var _this = this;
+        this.submitted = true;
+        if (form.valid) {
+            this.UserService.signup(this.signup).then(function (data) {
+                _this.navCtrl.pop();
+                _this.alert("Sucesso", "Registo concluído com sucesso.");
+            }, function (error) {
+                if (error.status == 409) {
+                    _this.alert("Erro", "Este email já se encontra registado.");
+                }
+                else {
+                    _this.alert("Erro", "Ocorreu um erro.");
+                }
+            });
+        }
+    };
+    SignupPage.prototype.alert = function (title, subtitle) {
+        var alert = this.alertCtrl.create({
+            title: title,
+            subTitle: subtitle,
+            buttons: ['Ok']
         });
+        alert.present();
     };
-    MenuFilterPage.prototype.applyFilters = function () {
-        // Pass back a new array of category names to exclude
-        var excludedCategoryNames = this.categories.filter(function (c) { return !c.isChecked; }).map(function (c) { return c.name; });
-        this.dismiss(excludedCategoryNames);
-    };
-    MenuFilterPage.prototype.dismiss = function (data) {
-        // using the injected ViewController this page
-        // can "dismiss" itself and pass back data
-        this.viewCtrl.dismiss(data);
-    };
-    return MenuFilterPage;
+    return SignupPage;
 }());
-MenuFilterPage = __decorate([
+SignupPage = __decorate([
     __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* IonicPage */])(),
     __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_5" /* Component */])({
-        selector: 'page-menu-filter',template:/*ion-inline-start:"C:\Users\someb\Documents\Sites\aiguaria-takeaway\src\pages\menu-filter\menu-filter.html"*/'<ion-header>\n\n  <ion-toolbar>\n\n    <ion-buttons start>\n\n      <button ion-button (click)="dismiss()">Cancelar</button>\n\n    </ion-buttons>\n\n\n\n    <ion-title>\n\n      Filtrar por categoria\n\n    </ion-title>\n\n\n\n    <ion-buttons end>\n\n      <button ion-button (click)="applyFilters()" strong>Ok</button>\n\n    </ion-buttons>\n\n  </ion-toolbar>\n\n</ion-header>\n\n\n\n<ion-content class="outer-content">\n\n\n\n  <ion-list>\n\n    <ion-list-header>Categorias</ion-list-header>\n\n\n\n    <ion-item *ngFor="let category of categories" [attr.track]="category.name | lowercase">\n\n      <span item-left class="dot"></span>\n\n      <ion-label>{{category.name}}</ion-label>\n\n      <ion-toggle [(ngModel)]="category.isChecked" color="secondary"></ion-toggle>\n\n    </ion-item>\n\n\n\n  </ion-list>\n\n\n\n  <ion-list>\n\n    <button ion-item (click)="resetFilters()" detail-none class="reset-filters">\n\n      Remover filtros\n\n    </button>\n\n  </ion-list>\n\n\n\n</ion-content>\n\n'/*ion-inline-end:"C:\Users\someb\Documents\Sites\aiguaria-takeaway\src\pages\menu-filter\menu-filter.html"*/
+        selector: 'page-user',template:/*ion-inline-start:"C:\Users\someb\Documents\Sites\aiguaria-takeaway\src\pages\signup\signup.html"*/'<ion-header>\n\n	<ion-navbar>\n\n		<button ion-button menuToggle>\n\n      <ion-icon name="menu"></ion-icon>\n\n    </button>\n\n		<ion-title>Registo</ion-title>\n\n	</ion-navbar>\n\n</ion-header>\n\n\n\n<ion-content class="login-page" padding>\n\n	<form #signupForm="ngForm" novalidate>\n\n		<ion-list>\n\n			<ion-item>\n\n				<ion-label stacked color="primary">Primeiro Nome</ion-label>\n\n				<ion-input [(ngModel)]="signup.first_name" name="first_name" type="text" #firstName="ngModel" required>\n\n				</ion-input>\n\n			</ion-item>\n\n			<p ion-text [hidden]="firstName.valid || submitted == false" color="danger" padding-left>\n\n				Primeiro nome obrigatório.\n\n			</p>\n\n			<ion-item>\n\n				<ion-label stacked color="primary">Último Nome</ion-label>\n\n				<ion-input [(ngModel)]="signup.last_name" name="last_name" type="text" #lastName="ngModel" required>\n\n				</ion-input>\n\n			</ion-item>\n\n			<p ion-text [hidden]="lastName.valid || submitted == false" color="danger" padding-left>\n\n				Último nome obrigatório.\n\n			</p>\n\n			<ion-item>\n\n				<ion-label stacked color="primary">Data de Nascimento</ion-label>\n\n				<ion-datetime [(ngModel)]="signup.birthday" name="birthday" #birthday="ngModel" displayFormat="DD/MMM/YYYY" max="2000" required></ion-datetime>\n\n			</ion-item>\n\n			<p ion-text [hidden]="birthday.valid || submitted == false" color="danger" padding-left>\n\n				Data de nascimento obrigatória.\n\n			</p>\n\n			<ion-item>\n\n				<ion-label stacked color="primary">Email</ion-label>\n\n				<ion-input [(ngModel)]="signup.email" name="email" type="email" email #email="ngModel" required>\n\n				</ion-input>\n\n			</ion-item>\n\n			<p ion-text [hidden]="email.valid || submitted == false" color="danger" padding-left>\n\n				Email obrigatório.\n\n			</p>\n\n			<ion-item>\n\n				<ion-label stacked color="primary">Telemóvel</ion-label>\n\n				<ion-input [(ngModel)]="signup.mobile" name="mobile" type="tel" maxlength="9" #mobile="ngModel" required>\n\n				</ion-input>\n\n			</ion-item>\n\n			<p ion-text [hidden]="mobile.valid || submitted == false" color="danger" padding-left>\n\n				Telemóvel obrigatório.\n\n			</p>\n\n		</ion-list>\n\n\n\n		<div padding>\n\n			<button ion-button [disabled]="!signupForm.valid" (click)="onSignup(signupForm)" type="submit" block>Registar</button>\n\n		</div>\n\n	</form>\n\n\n\n</ion-content>\n\n'/*ion-inline-end:"C:\Users\someb\Documents\Sites\aiguaria-takeaway\src\pages\signup\signup.html"*/
     }),
-    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["k" /* NavParams */],
-        __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["p" /* ViewController */]])
-], MenuFilterPage);
+    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavController */], __WEBPACK_IMPORTED_MODULE_2__providers_user_service__["a" /* UserService */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* AlertController */]])
+], SignupPage);
 
-//# sourceMappingURL=menu-filter.js.map
+//# sourceMappingURL=signup.js.map
 
 /***/ })
 

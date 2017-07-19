@@ -1,14 +1,14 @@
 webpackJsonp([7],{
 
-/***/ 267:
+/***/ 273:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(46);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__account_update__ = __webpack_require__(407);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "AccountUpdatePageModule", function() { return AccountUpdatePageModule; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__map__ = __webpack_require__(414);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "MapPageModule", function() { return MapPageModule; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -18,26 +18,26 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 
 
 
-var AccountUpdatePageModule = (function () {
-    function AccountUpdatePageModule() {
+var MapPageModule = (function () {
+    function MapPageModule() {
     }
-    return AccountUpdatePageModule;
+    return MapPageModule;
 }());
-AccountUpdatePageModule = __decorate([
+MapPageModule = __decorate([
     __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["a" /* NgModule */])({
         declarations: [
-            __WEBPACK_IMPORTED_MODULE_2__account_update__["a" /* AccountUpdatePage */],
+            __WEBPACK_IMPORTED_MODULE_2__map__["a" /* MapPage */],
         ],
         imports: [
-            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* IonicPageModule */].forChild(__WEBPACK_IMPORTED_MODULE_2__account_update__["a" /* AccountUpdatePage */]),
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* IonicPageModule */].forChild(__WEBPACK_IMPORTED_MODULE_2__map__["a" /* MapPage */]),
         ],
         exports: [
-            __WEBPACK_IMPORTED_MODULE_2__account_update__["a" /* AccountUpdatePage */]
+            __WEBPACK_IMPORTED_MODULE_2__map__["a" /* MapPage */]
         ]
     })
-], AccountUpdatePageModule);
+], MapPageModule);
 
-//# sourceMappingURL=account-update.module.js.map
+//# sourceMappingURL=map.module.js.map
 
 /***/ }),
 
@@ -47,13 +47,13 @@ AccountUpdatePageModule = __decorate([
 "use strict";
 
 var Observable_1 = __webpack_require__(9);
-var of_1 = __webpack_require__(282);
+var of_1 = __webpack_require__(397);
 Observable_1.Observable.of = of_1.of;
 //# sourceMappingURL=of.js.map
 
 /***/ }),
 
-/***/ 282:
+/***/ 397:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -64,7 +64,7 @@ exports.of = ArrayObservable_1.ArrayObservable.of;
 
 /***/ }),
 
-/***/ 283:
+/***/ 398:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -95,7 +95,8 @@ var SettingsService = (function () {
         this.http = http;
         this.userService = userService;
         // API_URL = 'http://172.24.62.104/link.eddmi.com/index.php/takeaway/';
-        this.API_URL = 'https://link.eddmi.com/takeaway/';
+        // ENTITY_ID = 2;
+        this.API_URL = 'https://app.linkya.xyz/takeaway/';
         this.ENTITY_ID = 277;
         // console.log('Hello SettingsService Provider');
     }
@@ -279,15 +280,15 @@ SettingsService = __decorate([
 
 /***/ }),
 
-/***/ 407:
+/***/ 414:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(46);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_settings_service__ = __webpack_require__(283);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__providers_user_service__ = __webpack_require__(100);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AccountUpdatePage; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__providers_user_service__ = __webpack_require__(100);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_settings_service__ = __webpack_require__(398);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_ionic_angular__ = __webpack_require__(46);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return MapPage; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -301,106 +302,86 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
-/**
- * Generated class for the AccountUpdatePage page.
- *
- * See http://ionicframework.com/docs/components/#navigation for more info
- * on Ionic pages and navigation.
- */
-var AccountUpdatePage = (function () {
-    function AccountUpdatePage(alertCtrl, navCtrl, navParams, viewCtrl, UserService, settingsService, loadingCtrl) {
-        this.alertCtrl = alertCtrl;
-        this.navCtrl = navCtrl;
-        this.navParams = navParams;
-        this.viewCtrl = viewCtrl;
-        this.UserService = UserService;
+var MapPage = (function () {
+    function MapPage(platform, user, settingsService, loadingCtrl) {
+        this.platform = platform;
+        this.user = user;
         this.settingsService = settingsService;
         this.loadingCtrl = loadingCtrl;
-        this.submitted = false;
-        this.postalCodeValidation = {
-            valid: true,
-            spinner: false,
-            message: ""
-        };
-        this.user = this.navParams.data.user;
-        // console.log(this.user);
     }
-    AccountUpdatePage.prototype.ionViewDidLoad = function () {
-        // console.log('ionViewDidLoad AccountUpdatePage');
-    };
-    AccountUpdatePage.prototype.dismiss = function (data) {
-        // using the injected ViewController this page
-        // can "dismiss" itself and pass back data
-        this.viewCtrl.dismiss(data);
-    };
-    AccountUpdatePage.prototype.onUpdate = function (form) {
+    MapPage.prototype.ionViewDidLoad = function () {
         var _this = this;
-        this.submitted = true;
-        if (form.valid && this.postalCodeValidation.valid) {
-            this.loading = this.loadingCtrl.create();
-            this.loading.present().then(function () {
-                _this.UserService.update(_this.user).then(function (data) {
-                    _this.loading.dismiss();
-                    _this.viewCtrl.dismiss(_this.user);
-                    _this.alert("Sucesso", "Dados alterados com sucesso.");
-                }, function (error) {
-                    _this.loading.dismiss();
-                    _this.alert("Erro", "Ocorreu um erro.");
+        this.loading = this.loadingCtrl.create();
+        this.loading.present().then(function () {
+            _this.settingsService.getPath()
+                .then(function (data) {
+                _this.path = data;
+                var polygon = null;
+                if (_this.path) {
+                    var decodedPath = google.maps.geometry.encoding.decodePath(_this.path);
+                    polygon = new google.maps.Polygon({
+                        paths: decodedPath,
+                        strokeOpacity: 0.8,
+                        strokeWeight: 0.1,
+                        fillOpacity: 0.35
+                    });
+                }
+                // this.confData.getMap().subscribe((mapData: any) => {
+                var mapEle = _this.mapElement.nativeElement;
+                var map = new google.maps.Map(mapEle, {
+                    center: {
+                        "name": "A Iguaria",
+                        "lat": 41.1747295,
+                        "lng": -8.5842759
+                    },
+                    zoom: 11
                 });
-            });
-        }
-    };
-    AccountUpdatePage.prototype.checkLocation = function (postal_code) {
-        var _this = this;
-        if (postal_code.length == 8) {
-            this.postalCodeValidation.spinner = true;
-            this.settingsService.getDistance(postal_code).then(function (data) {
-                if (data.status == "success") {
-                    if (data.valid) {
-                        _this.postalCodeValidation.valid = true;
-                        _this.postalCodeValidation.message = data.address;
-                        _this.user.locality = data.locality;
-                    }
-                    else {
-                        _this.postalCodeValidation.valid = false;
-                        _this.postalCodeValidation.message = data.address + " Não se encontra dentro do nosso cenas";
-                    }
+                // mapData.forEach((markerData: any) => {
+                // 	let infoWindow = new google.maps.InfoWindow({
+                // 		content: `<h5>${markerData.name}</h5>`
+                // 	});
+                // // 	let marker = new google.maps.Marker({
+                // // 		position: markerData,
+                // // 		map: map,
+                // // 		title: markerData.name
+                // // 	});
+                // 	marker.addListener('click', () => {
+                // 		infoWindow.open(map, marker);
+                // 	});
+                // });
+                google.maps.event.addListenerOnce(map, 'idle', function () {
+                    mapEle.classList.add('show-map');
+                });
+                if (polygon) {
+                    polygon.setMap(map);
                 }
-                else {
-                    _this.postalCodeValidation.valid = false;
-                    _this.postalCodeValidation.message = "Código postal inválido.";
-                }
-                _this.postalCodeValidation.spinner = false;
+                _this.loading.dismiss();
+                // });
             }, function (error) {
-                _this.postalCodeValidation.valid = false;
-                _this.postalCodeValidation.spinner = false;
-                _this.postalCodeValidation.message = "Ocorreu um erro a calcular.";
+                // console.log(error);
+                _this.loading.dismiss();
             });
-        }
-        else {
-            this.user.locality = '';
-        }
-    };
-    AccountUpdatePage.prototype.alert = function (title, subtitle) {
-        var alert = this.alertCtrl.create({
-            title: title,
-            subTitle: subtitle,
-            buttons: ['Ok']
         });
-        alert.present();
     };
-    return AccountUpdatePage;
+    MapPage.prototype.openSite = function (site) {
+        window.open(site, '_blank');
+    };
+    return MapPage;
 }());
-AccountUpdatePage = __decorate([
-    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* IonicPage */])(),
+__decorate([
+    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_9" /* ViewChild */])('mapCanvas'),
+    __metadata("design:type", __WEBPACK_IMPORTED_MODULE_0__angular_core__["J" /* ElementRef */])
+], MapPage.prototype, "mapElement", void 0);
+MapPage = __decorate([
+    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_3_ionic_angular__["g" /* IonicPage */])(),
     __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_5" /* Component */])({
-        selector: 'page-account-update',template:/*ion-inline-start:"C:\Users\someb\Documents\Sites\aiguaria-takeaway\src\pages\account-update\account-update.html"*/'<ion-header>\n	<ion-toolbar>\n		<ion-buttons start>\n			<button ion-button (click)="dismiss()">Cancelar</button>\n		</ion-buttons>\n\n		<ion-title>\n			Alterar dados\n		</ion-title>\n\n		<!--<ion-buttons end>\n			<button ion-button (click)="applyFilters()" strong>Ok</button>\n		</ion-buttons>-->\n	</ion-toolbar>\n</ion-header>\n\n\n<ion-content padding>\n\n	<form #userForm="ngForm" novalidate>\n		<ion-list>\n			<ion-item>\n				<ion-label stacked color="primary">Nome</ion-label>\n				<ion-input [(ngModel)]="user.name" name="name" type="text" #name="ngModel" required>\n				</ion-input>\n			</ion-item>\n			<ion-item>\n				<ion-label stacked color="primary">Telemóvel</ion-label>\n				<ion-input [(ngModel)]="user.mobile" [minlength]="9" name="mobile" type="tel" maxlength="9" #mobile="ngModel" required>\n				</ion-input>\n			</ion-item>\n			<ion-item>\n				<ion-label stacked color="primary">Morada</ion-label>\n				<ion-input [(ngModel)]="user.address" name="address" type="text" #address="ngModel" required>\n				</ion-input>\n			</ion-item>\n			<ion-item [ngClass]="{\'invalid\': !postalCodeValidation.valid}">\n				<ion-label stacked color="primary">Código Postal</ion-label>\n				<ion-input [(ngModel)]="user.postal_code" [minlength]="8" [maxlength]="8" (ngModelChange)="checkLocation(user.postal_code, postalCode)" name="postal_code"  pattern="^\\d{4}-\\d{3}$" max="8" type="text" #postalCode="ngModel" required>\n				</ion-input>\n			</ion-item>\n			<ion-spinner [hidden]="!postalCodeValidation.spinner" margin-left></ion-spinner>\n			<p padding-left [hidden]="!postalCodeValidation.message">\n				<ion-icon name=\'alert\' [hidden]="postalCodeValidation.valid"></ion-icon> \n				{{postalCodeValidation.message}}\n			</p>\n		</ion-list>\n\n		<div padding>\n			<button [disabled]="!userForm.valid || !postalCodeValidation.valid" ion-button (click)="onUpdate(userForm)" type="submit" block>Editar</button>\n		</div>\n	</form>\n\n</ion-content>\n'/*ion-inline-end:"C:\Users\someb\Documents\Sites\aiguaria-takeaway\src\pages\account-update\account-update.html"*/,
-        providers: [__WEBPACK_IMPORTED_MODULE_2__providers_settings_service__["a" /* SettingsService */], __WEBPACK_IMPORTED_MODULE_3__providers_user_service__["a" /* UserService */]]
+        selector: 'page-map',template:/*ion-inline-start:"C:\Users\someb\Documents\Sites\aiguaria-takeaway\src\pages\map\map.html"*/'<ion-header>\n\n  <ion-navbar>\n\n    <button ion-button menuToggle>\n\n      <ion-icon name="menu"></ion-icon>\n\n    </button>\n\n    <ion-title>Zona de entrega</ion-title>\n\n  </ion-navbar>\n\n</ion-header>\n\n\n\n<ion-content class="map-page">\n\n  <div style="height: 100%; width: 100%" #mapCanvas id="map_canvas"></div>\n\n</ion-content>\n\n'/*ion-inline-end:"C:\Users\someb\Documents\Sites\aiguaria-takeaway\src\pages\map\map.html"*/,
+        providers: [__WEBPACK_IMPORTED_MODULE_2__providers_settings_service__["a" /* SettingsService */]]
     }),
-    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* AlertController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["k" /* NavParams */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["p" /* ViewController */], __WEBPACK_IMPORTED_MODULE_3__providers_user_service__["a" /* UserService */], __WEBPACK_IMPORTED_MODULE_2__providers_settings_service__["a" /* SettingsService */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["m" /* LoadingController */]])
-], AccountUpdatePage);
+    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_3_ionic_angular__["r" /* Platform */], __WEBPACK_IMPORTED_MODULE_1__providers_user_service__["a" /* UserService */], __WEBPACK_IMPORTED_MODULE_2__providers_settings_service__["a" /* SettingsService */], __WEBPACK_IMPORTED_MODULE_3_ionic_angular__["m" /* LoadingController */]])
+], MapPage);
 
-//# sourceMappingURL=account-update.js.map
+//# sourceMappingURL=map.js.map
 
 /***/ })
 

@@ -1,14 +1,14 @@
 webpackJsonp([10],{
 
-/***/ 278:
+/***/ 279:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(46);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__signup__ = __webpack_require__(418);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SignupPageModule", function() { return SignupPageModule; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__tutorial__ = __webpack_require__(420);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "TutorialPageModule", function() { return TutorialPageModule; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -18,37 +18,37 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 
 
 
-var SignupPageModule = (function () {
-    function SignupPageModule() {
+var TutorialPageModule = (function () {
+    function TutorialPageModule() {
     }
-    return SignupPageModule;
+    return TutorialPageModule;
 }());
-SignupPageModule = __decorate([
+TutorialPageModule = __decorate([
     __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["a" /* NgModule */])({
         declarations: [
-            __WEBPACK_IMPORTED_MODULE_2__signup__["a" /* SignupPage */],
+            __WEBPACK_IMPORTED_MODULE_2__tutorial__["a" /* TutorialPage */],
         ],
         imports: [
-            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* IonicPageModule */].forChild(__WEBPACK_IMPORTED_MODULE_2__signup__["a" /* SignupPage */]),
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* IonicPageModule */].forChild(__WEBPACK_IMPORTED_MODULE_2__tutorial__["a" /* TutorialPage */]),
         ],
         exports: [
-            __WEBPACK_IMPORTED_MODULE_2__signup__["a" /* SignupPage */]
+            __WEBPACK_IMPORTED_MODULE_2__tutorial__["a" /* TutorialPage */]
         ]
     })
-], SignupPageModule);
+], TutorialPageModule);
 
-//# sourceMappingURL=signup.module.js.map
+//# sourceMappingURL=tutorial.module.js.map
 
 /***/ }),
 
-/***/ 418:
+/***/ 420:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(46);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_user_service__ = __webpack_require__(100);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return SignupPage; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ionic_storage__ = __webpack_require__(47);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return TutorialPage; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -61,50 +61,50 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
-var SignupPage = (function () {
-    function SignupPage(navCtrl, UserService, alertCtrl) {
+var TutorialPage = (function () {
+    function TutorialPage(navCtrl, menu, storage) {
         this.navCtrl = navCtrl;
-        this.UserService = UserService;
-        this.alertCtrl = alertCtrl;
-        this.signup = {};
-        this.submitted = false;
+        this.menu = menu;
+        this.storage = storage;
+        this.showSkip = true;
     }
-    SignupPage.prototype.onSignup = function (form) {
+    TutorialPage.prototype.startApp = function () {
         var _this = this;
-        this.submitted = true;
-        if (form.valid) {
-            this.UserService.signup(this.signup).then(function (data) {
-                _this.navCtrl.pop();
-                _this.alert("Sucesso", "Registo concluído com sucesso.");
-            }, function (error) {
-                if (error.status == 409) {
-                    _this.alert("Erro", "Este email já se encontra registado.");
-                }
-                else {
-                    _this.alert("Erro", "Ocorreu um erro.");
-                }
-            });
-        }
-    };
-    SignupPage.prototype.alert = function (title, subtitle) {
-        var alert = this.alertCtrl.create({
-            title: title,
-            subTitle: subtitle,
-            buttons: ['Ok']
+        this.navCtrl.setRoot('MenuPage').then(function () {
+            _this.storage.set('hasSeenTutorial', 'true');
         });
-        alert.present();
     };
-    return SignupPage;
+    TutorialPage.prototype.onSlideChangeStart = function (slider) {
+        this.showSkip = !slider.isEnd();
+    };
+    TutorialPage.prototype.ionViewWillEnter = function () {
+        this.slides.update();
+    };
+    TutorialPage.prototype.ionViewDidEnter = function () {
+        // the root left menu should be disabled on the tutorial page
+        this.menu.enable(false);
+    };
+    TutorialPage.prototype.ionViewDidLeave = function () {
+        // enable the root left menu when leaving the tutorial page
+        this.menu.enable(true);
+    };
+    return TutorialPage;
 }());
-SignupPage = __decorate([
+__decorate([
+    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_9" /* ViewChild */])('slides'),
+    __metadata("design:type", __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* Slides */])
+], TutorialPage.prototype, "slides", void 0);
+TutorialPage = __decorate([
     __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* IonicPage */])(),
     __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_5" /* Component */])({
-        selector: 'page-user',template:/*ion-inline-start:"C:\Users\someb\Documents\Sites\aiguaria-takeaway\src\pages\signup\signup.html"*/'<ion-header>\n\n	<ion-navbar>\n\n		<button ion-button menuToggle>\n\n      <ion-icon name="menu"></ion-icon>\n\n    </button>\n\n		<ion-title>Registo</ion-title>\n\n	</ion-navbar>\n\n</ion-header>\n\n\n\n<ion-content class="login-page" padding>\n\n	<form #signupForm="ngForm" novalidate>\n\n		<ion-list>\n\n			<ion-item>\n\n				<ion-label stacked color="primary">Primeiro Nome</ion-label>\n\n				<ion-input [(ngModel)]="signup.first_name" name="first_name" type="text" #firstName="ngModel" required>\n\n				</ion-input>\n\n			</ion-item>\n\n			<p ion-text [hidden]="firstName.valid || submitted == false" color="danger" padding-left>\n\n				Primeiro nome obrigatório.\n\n			</p>\n\n			<ion-item>\n\n				<ion-label stacked color="primary">Último Nome</ion-label>\n\n				<ion-input [(ngModel)]="signup.last_name" name="last_name" type="text" #lastName="ngModel" required>\n\n				</ion-input>\n\n			</ion-item>\n\n			<p ion-text [hidden]="lastName.valid || submitted == false" color="danger" padding-left>\n\n				Último nome obrigatório.\n\n			</p>\n\n			<ion-item>\n\n				<ion-label stacked color="primary">Data de Nascimento</ion-label>\n\n				<ion-datetime [(ngModel)]="signup.birthday" name="birthday" #birthday="ngModel" displayFormat="DD/MMM/YYYY" max="2000" required></ion-datetime>\n\n			</ion-item>\n\n			<p ion-text [hidden]="birthday.valid || submitted == false" color="danger" padding-left>\n\n				Data de nascimento obrigatória.\n\n			</p>\n\n			<ion-item>\n\n				<ion-label stacked color="primary">Email</ion-label>\n\n				<ion-input [(ngModel)]="signup.email" name="email" type="email" email #email="ngModel" required>\n\n				</ion-input>\n\n			</ion-item>\n\n			<p ion-text [hidden]="email.valid || submitted == false" color="danger" padding-left>\n\n				Email obrigatório.\n\n			</p>\n\n			<ion-item>\n\n				<ion-label stacked color="primary">Telemóvel</ion-label>\n\n				<ion-input [(ngModel)]="signup.mobile" name="mobile" type="tel" maxlength="9" #mobile="ngModel" required>\n\n				</ion-input>\n\n			</ion-item>\n\n			<p ion-text [hidden]="mobile.valid || submitted == false" color="danger" padding-left>\n\n				Telemóvel obrigatório.\n\n			</p>\n\n		</ion-list>\n\n\n\n		<div padding>\n\n			<button ion-button [disabled]="!signupForm.valid" (click)="onSignup(signupForm)" type="submit" block>Registar</button>\n\n		</div>\n\n	</form>\n\n\n\n</ion-content>\n\n'/*ion-inline-end:"C:\Users\someb\Documents\Sites\aiguaria-takeaway\src\pages\signup\signup.html"*/
+        selector: 'page-tutorial',template:/*ion-inline-start:"C:\Users\someb\Documents\Sites\aiguaria-takeaway\src\pages\tutorial\tutorial.html"*/'<ion-header no-border>\n\n  <ion-navbar>\n\n    <ion-buttons end *ngIf="showSkip">\n\n      <button ion-button (click)="startApp()" color="primary">Skip</button>\n\n    </ion-buttons>\n\n  </ion-navbar>\n\n</ion-header>\n\n\n\n<ion-content no-bounce>\n\n  <ion-slides #slides (ionSlideWillChange)="onSlideChangeStart($event)" pager>\n\n\n\n    <ion-slide>\n\n      <img src="assets/img/ica-slidebox-img-1.png" class="slide-image"/>\n\n      <h2 class="slide-title">\n\n        Welcome to <b>ICA</b>\n\n      </h2>\n\n      <p>\n\n        The <b>ionic conference app</b> is a practical preview of the ionic framework in action, and a demonstration of proper code use.\n\n      </p>\n\n    </ion-slide>\n\n\n\n    <ion-slide>\n\n      <img src="assets/img/ica-slidebox-img-2.png" class="slide-image"/>\n\n      <h2 class="slide-title" >What is Ionic?</h2>\n\n      <p><b>Ionic Framework</b> is an open source SDK that enables developers to build high quality mobile apps with web technologies like HTML, CSS, and JavaScript.</p>\n\n    </ion-slide>\n\n\n\n    <ion-slide>\n\n      <img src="assets/img/ica-slidebox-img-3.png" class="slide-image"/>\n\n      <h2 class="slide-title">What is Ionic Platform?</h2>\n\n      <p>The <b>Ionic Platform</b> is a cloud platform for managing and scaling Ionic apps with integrated services like push notifications, native builds, user auth, and live updating.</p>\n\n    </ion-slide>\n\n\n\n    <ion-slide>\n\n      <img src="assets/img/ica-slidebox-img-4.png" class="slide-image"/>\n\n      <h2 class="slide-title">Ready to Play?</h2>\n\n      <button ion-button icon-right large clear (click)="startApp()">\n\n        Continue\n\n        <ion-icon name="arrow-forward"></ion-icon>\n\n      </button>\n\n    </ion-slide>\n\n\n\n  </ion-slides>\n\n</ion-content>\n\n'/*ion-inline-end:"C:\Users\someb\Documents\Sites\aiguaria-takeaway\src\pages\tutorial\tutorial.html"*/
     }),
-    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavController */], __WEBPACK_IMPORTED_MODULE_2__providers_user_service__["a" /* UserService */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* AlertController */]])
-], SignupPage);
+    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavController */],
+        __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* MenuController */],
+        __WEBPACK_IMPORTED_MODULE_2__ionic_storage__["b" /* Storage */]])
+], TutorialPage);
 
-//# sourceMappingURL=signup.js.map
+//# sourceMappingURL=tutorial.js.map
 
 /***/ })
 

@@ -7,7 +7,7 @@ webpackJsonp([12],{
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(46);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__login__ = __webpack_require__(412);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__login__ = __webpack_require__(413);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "LoginPageModule", function() { return LoginPageModule; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -41,7 +41,7 @@ LoginPageModule = __decorate([
 
 /***/ }),
 
-/***/ 412:
+/***/ 413:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -116,17 +116,23 @@ var LoginPage = (function () {
         alert.addButton({
             text: 'Ok',
             handler: function (data) {
-                _this.UserService.recoverPassword(data.email).then(function (data) {
-                    _this.alert('Sucesso', 'Pedido efectuado com sucesso. A nova password foi enviada para o seu email.');
-                }, function (error) {
-                    switch (error.status) {
-                        case 404:
-                            _this.alert('Erro', 'O email não está registado.');
-                            break;
-                        default:
-                            _this.alert('Erro', 'Ocorreu um erro a alterar a password.');
-                            break;
-                    }
+                _this.loading = _this.loadingCtrl.create();
+                _this.loading.present().then(function () {
+                    _this.UserService.recoverPassword(data.email).then(function (data) {
+                        _this.alert('Sucesso', 'Pedido efectuado com sucesso. A nova password foi enviada para o seu email.');
+                        _this.loading.dismiss();
+                    }, function (error) {
+                        switch (error.status) {
+                            case 404:
+                                _this.alert('Erro', 'O email não está registado.');
+                                _this.loading.dismiss();
+                                break;
+                            default:
+                                _this.alert('Erro', 'Ocorreu um erro a alterar a password.');
+                                _this.loading.dismiss();
+                                break;
+                        }
+                    });
                 });
             }
         });

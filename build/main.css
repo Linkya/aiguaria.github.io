@@ -1,4 +1,3 @@
-@charset "UTF-8";
 .ion-ios-add:before {
   content: "\f102";
 }
@@ -38889,6 +38888,20 @@ ion-navbar.toolbar {
   box-shadow: inset 0 -1px 0 0 #f53d3d;
 }
 
+.linkya {
+  position: absolute;
+  bottom: 10px;
+  width: 100%;
+  text-align: center;
+  cursor: pointer;
+}
+
+.linkya p {
+  margin-bottom: 5px;
+  font-size: 12px;
+  color: #DE6158;
+}
+
 .about-header {
   background-size: cover;
   height: 240px;
@@ -38930,11 +38943,6 @@ page-account img {
 
 page-account .label-ios {
   font-size: 1.6rem;
-}
-
-page-account ion-icon {
-  color: #c64f62;
-  width: 20px;
 }
 
 page-account-update .item-md.item-input.ng-valid.invalid.input-has-value:not(.input-has-focus) .item-inner {
@@ -39023,42 +39031,37 @@ ion-app._gmaps_cdv_ .nav-decor {
   background-color: transparent !important;
 }
 
-page-menu ion-item[track=ionic] ion-label {
-  border-left: 2px solid #c64f62;
-  padding-left: 10px;
-}
-
-page-menu ion-item[track=carne] ion-label {
+page-menu ion-item[track=cat0] ion-label {
   border-left: 2px solid #AC282B;
   padding-left: 10px;
 }
 
-page-menu ion-item[track=peixe] ion-label {
+page-menu ion-item[track=cat1] ion-label {
   border-left: 2px solid #8E8D93;
   padding-left: 10px;
 }
 
-page-menu ion-item[track=sopas] ion-label {
+page-menu ion-item[track=cat2] ion-label {
   border-left: 2px solid #FE4C52;
   padding-left: 10px;
 }
 
-page-menu ion-item[track=bebidas] ion-label {
+page-menu ion-item[track=cat3] ion-label {
   border-left: 2px solid #FD8B2D;
   padding-left: 10px;
 }
 
-page-menu ion-item[track=guarnições] ion-label {
+page-menu ion-item[track=cat4] ion-label {
   border-left: 2px solid #FED035;
   padding-left: 10px;
 }
 
-page-menu ion-item[track=saladas] ion-label {
+page-menu ion-item[track=cat5] ion-label {
   border-left: 2px solid #69BB7B;
   padding-left: 10px;
 }
 
-page-menu ion-item[track=vegetariano] ion-label {
+page-menu ion-item[track=cat6] ion-label {
   border-left: 2px solid #3BC7C4;
   padding-left: 10px;
 }
@@ -39066,6 +39069,11 @@ page-menu ion-item[track=vegetariano] ion-label {
 page-menu ion-icon[name="arrow-back"], page-menu ion-icon[name="arrow-forward"] {
   font-size: 25px;
   padding: 10px;
+}
+
+page-menu ion-label {
+  overflow: initial;
+  white-space: initial;
 }
 
 page-menu .item-md [item-right], page-menu .item-ios [item-right] {
@@ -39135,11 +39143,17 @@ page-menu .item-ios.item-block .item-inner {
   page-menu .toolbar-ios .segment-button {
     max-width: 85px;
   }
+  page-menu .item-ios .item-button {
+    font-size: 1.2rem;
+  }
 }
 
 @media only screen and (min-device-width: 375px) and (max-device-width: 667px) and (orientation: portrait) {
   page-menu .toolbar-ios .segment-button {
     max-width: 100px;
+  }
+  page-menu .item-ios .item-button {
+    font-size: 1.3rem;
   }
 }
 
@@ -39147,16 +39161,7 @@ page-menu .item-ios.item-block .item-inner {
   color: #f53d3d;
 }
 
-ion-item[track=ionic] .dot {
-  height: 10px;
-  display: inline-block;
-  width: 10px;
-  background-color: #c64f62;
-  border-radius: 5px;
-  margin-right: 10px;
-}
-
-ion-item[track=carne] .dot {
+ion-item[track=cat0] .dot {
   height: 10px;
   display: inline-block;
   width: 10px;
@@ -39165,7 +39170,7 @@ ion-item[track=carne] .dot {
   margin-right: 10px;
 }
 
-ion-item[track=peixe] .dot {
+ion-item[track=cat1] .dot {
   height: 10px;
   display: inline-block;
   width: 10px;
@@ -39174,7 +39179,7 @@ ion-item[track=peixe] .dot {
   margin-right: 10px;
 }
 
-ion-item[track=sopas] .dot {
+ion-item[track=cat2] .dot {
   height: 10px;
   display: inline-block;
   width: 10px;
@@ -39183,7 +39188,7 @@ ion-item[track=sopas] .dot {
   margin-right: 10px;
 }
 
-ion-item[track=bebidas] .dot {
+ion-item[track=cat3] .dot {
   height: 10px;
   display: inline-block;
   width: 10px;
@@ -39192,7 +39197,7 @@ ion-item[track=bebidas] .dot {
   margin-right: 10px;
 }
 
-ion-item[track=guarnições] .dot {
+ion-item[track=cat4] .dot {
   height: 10px;
   display: inline-block;
   width: 10px;
@@ -39201,7 +39206,7 @@ ion-item[track=guarnições] .dot {
   margin-right: 10px;
 }
 
-ion-item[track=saladas] .dot {
+ion-item[track=cat5] .dot {
   height: 10px;
   display: inline-block;
   width: 10px;
@@ -39210,7 +39215,7 @@ ion-item[track=saladas] .dot {
   margin-right: 10px;
 }
 
-ion-item[track=vegetariano] .dot {
+ion-item[track=cat6] .dot {
   height: 10px;
   display: inline-block;
   width: 10px;
