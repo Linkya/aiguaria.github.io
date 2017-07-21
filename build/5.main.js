@@ -347,13 +347,13 @@ var ProductService = (function () {
     ProductService.prototype.getFixed = function (local) {
         var _this = this;
         return new Promise(function (resolve, reject) {
-            var url = _this.API_URL + 'product/fixed?local=' + local;
+            var url = _this.API_URL + 'product/menu?type=fixed&local=' + local;
             var _headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["b" /* Headers */]({ 'Authorization': _this.ENTITY_ID });
             var _options = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["c" /* RequestOptions */]({ headers: _headers });
             _this.http.get(url, _options)
                 .map(function (res) { return res.json(); })
                 .subscribe(function (data) {
-                _this.fixedMenu = _this.organizeByCategory(data.data.products);
+                _this.fixedMenu = data.data.menu;
                 resolve(_this.fixedMenu);
             }, function (error) {
                 // console.log(error);
@@ -364,13 +364,13 @@ var ProductService = (function () {
     ProductService.prototype.getDaily = function (local) {
         var _this = this;
         return new Promise(function (resolve, reject) {
-            var url = _this.API_URL + 'product/daily?local=' + local;
+            var url = _this.API_URL + 'product/menu?type=daily&local=' + local;
             var _headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["b" /* Headers */]({ 'Authorization': _this.ENTITY_ID });
             var _options = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["c" /* RequestOptions */]({ headers: _headers });
             _this.http.get(url, _options)
                 .map(function (res) { return res.json(); })
                 .subscribe(function (data) {
-                _this.dailyMenu = _this.organizeByCategory(data.data.products);
+                _this.dailyMenu = data.data.menu;
                 resolve(_this.dailyMenu);
             }, function (error) {
                 // console.log(error);
@@ -378,28 +378,14 @@ var ProductService = (function () {
             });
         });
     };
-    ProductService.prototype.organizeByCategory = function (products) {
-        var auxCategory = '';
-        var organized = [];
-        products.forEach(function (product) {
-            if (!(organized.find(function (p) { return p.name === product.category; }))) {
-                auxCategory = product.category;
-                var group = {
-                    name: auxCategory,
-                    items: products.filter(function (p) { return p.category === auxCategory; })
-                };
-                organized.push(group);
-            }
-        });
-        return organized;
-    };
     return ProductService;
 }());
 ProductService = __decorate([
     __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["c" /* Injectable */])(),
-    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__angular_http__["d" /* Http */]])
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__angular_http__["d" /* Http */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_http__["d" /* Http */]) === "function" && _a || Object])
 ], ProductService);
 
+var _a;
 //# sourceMappingURL=menu-service.js.map
 
 /***/ }),
